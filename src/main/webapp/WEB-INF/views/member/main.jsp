@@ -7,9 +7,22 @@
 <head>
 <meta charset="UTF-8">
 <title>송파여성인력개발센터</title>
-<link rel="stylesheet" href="resources/css/main.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
+<style>
+/* 초기화 */
+	*{ margin: 0; padding: 0;}
+	body{font-family: sans-serif;}
+	li{list-style: none;}
+	a{text-decoration: none;}
+	img{border: 0;}
+	
+header{
+	background-color: black;
+}
+
+</style>
 </head>
 <body>
 

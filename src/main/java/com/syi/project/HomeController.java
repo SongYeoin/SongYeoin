@@ -1,4 +1,4 @@
-package com.project.club;
+package com.syi.project;
 
 import java.text.DateFormat;
 import java.util.Date;
