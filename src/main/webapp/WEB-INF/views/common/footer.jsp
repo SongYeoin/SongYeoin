@@ -4,58 +4,57 @@
 <head>
 <meta charset="UTF-8">
 <title>Footer</title>
-<link rel="stylesheet" 
+<link rel="stylesheet"
 	href="${pageContext.servletContext.contextPath}/resources/css/common.css">
 
-
 <style>
-       footer {
-            background-color: #B49AC5;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            font-size: 12px;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
+footer {
+	background-color: #B49AC5;
+	color: white;
+	padding: 20px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	font-size: 12px;
+	position: relative;
+	bottom: 0;
+	width: 100%;
+}
 
-        .footer-container {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            width: 100%;
-            max-width: 1200px;
-        }
+.footer-container {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	max-width: 1200px;
+}
 
-        .footer-section {
-            margin: 0 10px;
-            text-align: center;
-        }
+.footer-section {
+	margin: 0 10px;
+	text-align: center;
+}
 
-        .footer-section p {
-            margin: 5px 0;
-        }
+.footer-section p {
+	margin: 5px 0;
+}
 
-        .footer-section a {
-            color: white;
-            text-decoration: none;
-        }
+.footer-section a {
+	color: white;
+	text-decoration: none;
+}
 
-        .footer-section a:hover {
-            text-decoration: underline;
-        }
+.footer-section a:hover {
+	text-decoration: underline;
+}
 
-        .footer-section.logo {
-            font-size: 14px;
-            margin-right: 20px;
-        } 
-    </style>
-    
+.footer-section.logo {
+	font-size: 14px;
+	margin-right: 20px;
+}
+</style>
+
 </head>
 <body>
 	
