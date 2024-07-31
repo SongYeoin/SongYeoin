@@ -11,7 +11,7 @@ public class ShoppingController {
 	private static final Logger logger = LoggerFactory.getLogger(ShoppingController.class);
 	
 	//메인 페이지 이동
-	@GetMapping("/main")
+	@GetMapping("/member/main")
 	public void mainPageGET() {
 		logger.info("메인 페이지 진입");
 	}
