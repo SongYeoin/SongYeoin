@@ -8,13 +8,7 @@
 <title>댕댕스쿨</title>
 	
 	<style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
+    header {
             background-color: black;
             color: white;
             padding: 40px;
@@ -24,6 +18,13 @@
             top: 0;
             width: 100%;
             z-index: 1000;
+            
+            justify-content: space-between;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
         }
 
         .menu-button {
@@ -39,24 +40,38 @@
         .logo .highlight {
             font-weight: bold;
         }
-		
-		
+        
+        .btns{
+        	
+        	display: flex;
+            gap: 10px;
+        }
       
 
     </style>
 	
 	
-	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<script src="https://kit.fontawesome.com/c4a5ae5491.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
 	<!-- header 영역 -->
 	<header>
+	<div class="header-left">
         <div class="menu-button">
             &#9776;
         </div>
         <div class="logo">
             <span class="highlight">S</span>ongpa <span class="highlight">W</span>oman
+        </div>
+        </div>
+       
+        
+        <div class="btns">
+			<i class="fa-regular fa-comment fa-2xl" style="color: #ffffff;"></i>
+        	<button type="button" class="btn btn-light">Mypage</button>
+        	<button type="button" class="btn btn-secondary">Logout</button>
         </div>
     </header>
 

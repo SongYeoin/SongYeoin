@@ -9,13 +9,7 @@
 
 
 <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        footer {
+       footer {
             background-color: #B49AC5;
             color: white;
             padding: 30px;
@@ -59,7 +53,7 @@
         .footer-section.logo {
             font-size: 14px;
             margin-right: 20px;
-        }
+        } 
     </style>
     
 </head>
