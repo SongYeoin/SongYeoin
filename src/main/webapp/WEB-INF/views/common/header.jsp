@@ -11,11 +11,12 @@
     header {
             background-color: black;
             color: white;
-            padding: 40px;
+            padding: 30px;
             display: flex;
             align-items: center;
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
             z-index: 1000;
             

@@ -12,7 +12,7 @@
        footer {
             background-color: #B49AC5;
             color: white;
-            padding: 30px;
+            padding: 20px;
             text-align: center;
             display: flex;
             justify-content: center;

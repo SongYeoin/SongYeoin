@@ -14,19 +14,26 @@
 
 
 <style>
-       body {
-            font-family: Arial, sans-serif;
+		
+		/* CSS Reset */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        
+       body {
+            font-family: Arial, sans-serif;
             
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            align-items: stretch;
         }
 
         
 
-        main {
+         /*main {
             padding: 0;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -38,9 +45,33 @@
                 
             flex: 1;
             height: calc(100vh - 100px); /* Adjust based on header and footer height */
-			position: relative; /* 헤더와 겹치지 않도록 설정 */
-        }
+		 	/* position: relative; */  /* 헤더와 겹치지 않도록 설정 
+        } */
+ 
+ 
+ 		.total{
+    display:flex;
+    align-items: flex-start;
+    flex-direction: column;
 
+  }
+
+  .part1{
+    display:flex;
+    float:left;
+    width:100%;
+    height:300px;
+
+  }
+  .part2{
+    display:flex;
+    float:left;
+    width:100%;
+    height:250px;
+  }
+  
+ 
+ 
         .section {
             margin: 0;
             padding: 0;
@@ -50,14 +81,16 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            padding: 20px;
+            /* padding: 20px; */
+            
 		    background-color: gray; /* Default background color */
 		    border: 1px solid #ddd; /* Optional border for better visibility */
 		    overflow: hidden; /* 내용이 섹션을 넘치지 않도록 설정 */
+		    width:100%; 
             
         }
 
-        .section1 { background-color: #EEEEEE; grid-area: section1; }
+        .section1 { background-color: #EEEEEE; /* grid-area: section1; */ }
         .section2 { background-color: #FFC452; grid-area: section2; }
         .section3 { background-color: #C8C8C8; grid-area: section3; }
         .section4 { background-color: #F76C8D; grid-area: section4; }
@@ -70,6 +103,8 @@
 		    font-weight: bold;
 		    font-size: 2em;
 		    color: black;
+		    
+		    padding :0 auto;
 		}
 		
 		/* 소메뉴 스타일 */
@@ -119,7 +154,7 @@
 
 
 
-	<main>
+	<!-- <main>
 		<div class="section section1">
 			<div class="menu-title">Attendance <br>출석</div>
 			<div class="submenu">
@@ -153,8 +188,49 @@
 				<p>공지사항</p>
 			</div>
 		</div>
-	</main>
+	</main> -->
 
+	<main>
+	<div class="total">
+      <div class="part1">
+		<div class="section section1">
+			<div class="menu-title">Attendance <br>출석</div>
+			<div class="submenu">
+				<p>출석부 조회</p>
+				<p>출석하기</p>
+			</div>
+		</div>
+		<div class="section section2">
+			<div class="menu-title">Daily Log Submission <br>교육일지</div>
+			<div class="submenu">
+				<p>교육일지 제출</p>
+				<p>교육일지 조회</p>
+			</div>
+		</div>
+      </div>
+      <div class="part2">
+		<div class="section section3">
+			<div class="menu-title">Room Booking <br>동아리 신청</div>
+			<div class="submenu">
+				<p>동아리실 신청</p>
+				<p>동아리일지 제출</p>
+			</div>
+		</div>
+		<div class="section section4">
+			<div class="menu-title">Anonymous Board <br>익명게시판</div>
+			<div class="submenu">
+				<p>익명게시판</p>
+			</div>
+		</div>
+		<div class="section section5">
+			<div class="menu-title">Notices <br>공지사항</div>
+			<div class="submenu">
+			<p>공지사항</p>
+              </div>
+        </div>
+      </div>
+     </div>
+     </main>
 
 
 <!-- 푸터 연결 -->
