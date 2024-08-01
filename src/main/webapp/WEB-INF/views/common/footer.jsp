@@ -9,7 +9,7 @@
 
 <style>
 footer {
-	background-color: #B49AC5;
+	background-color: #BBB2FF;
 	color: white;
 	padding: 20px;
 	text-align: center;
