@@ -2,7 +2,7 @@
 web.xml
 Servers
 .DS_Store
-
+target/
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/eclipse
