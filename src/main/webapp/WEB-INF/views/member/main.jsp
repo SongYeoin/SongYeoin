@@ -30,21 +30,20 @@ body {
 	display: flex;
 	align-items: flex-start;
 	flex-direction: column;
-	margin-top: 120px;
 }
 
 .part1 {
-	display: flex;
-	float: left;
-	width: 100%;
-	height: 300px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: 573px;
 }
 
 .part2 {
-	display: flex;
-	float: left;
-	width: 100%;
-	height: 250px;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    height: 403px;
 }
 
 .section {
@@ -63,10 +62,12 @@ body {
 
 .section1 {
 	background-color: #EEEEEE;
+	padding-top: 120px;
 }
 
 .section2 {
 	background-color: #FFC452;
+	padding-top: 120px;
 }
 
 .section3 {
@@ -109,6 +110,10 @@ body {
 	text-align: right; /* 소메뉴 내용의 텍스트 정렬 */
 }
 
+.pd-top{
+	padding-top: 120px;
+}
+
 /* 소메뉴 글자 스타일 */
 .submenu p {
 	margin: 20px 0; /* 위아래 여백 설정 */
@@ -131,14 +136,14 @@ body {
       <div class="part1">
 		<div class="section section1">
 			<div class="menu-title">Attendance <br>출석</div>
-			<div class="submenu">
+			<div class="submenu pd-top">
 				<p>출석부 조회</p>
 				<p>출석하기</p>
 			</div>
 		</div>
 		<div class="section section2">
 			<div class="menu-title">Daily Log Submission <br>교육일지</div>
-			<div class="submenu">
+			<div class="submenu pd-top">
 				<p>교육일지 제출</p>
 				<p>교육일지 조회</p>
 			</div>
