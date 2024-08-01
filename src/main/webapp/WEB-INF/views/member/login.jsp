@@ -11,10 +11,9 @@
 </head>
 
 <style>
-#login-wrap{
-	/* height:80vh; */
- 	/* position:relative; */
-	width:100%
+/* #login-wrap{
+	position:relative;
+	width:100%;
 }
 
 .login-wrapper {
@@ -32,34 +31,105 @@
 
 p a {
 	text-decoration:none;
+} */
+
+body, h2, p, form {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#login-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-wrapper {
+    width: 400px;
+    padding: 30px;
+    background-color: #ececec;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+form input[type="text"], 
+form input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #000000;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.error {
+    color: #e74c3c;
+    font-size: 14px;
+}
+
+#join {
+	text-align: right;
+}
+
+p a {
+    /* text-decoration: none; */
+    color: #000000;
+}
+
 </style>
 
 <body>
 
-	<!-- 메뉴바 연결 -->
-	<%@ include file="../common/header.jsp"%>
-
 	<div id="login-wrap">
 
 		<div class="login-wrapper">
-			<h2>Login</h2>
-			<form action="${ pageContext.servletContext.contextPath }/member/login"
-				method="post" id="login-form">
+			<!-- <h2>Login</h2> -->
+			<form action="${ pageContext.servletContext.contextPath }/member/login" method="post" id="login-form">
+				<p>ID</p>
 				<input type="text" name="userId" id="userId" placeholder="아이디를 입력하세요"><br>
 				<span id="userIdError" class="error"></span><br> 
 				
+				<p>Password</p>
 				<input type="password" name="userPwd" id="userPwd" placeholder="비밀번호를 입력하세요"><br>
 				<span id="userPwdError" class="error"></span><br>
-				<input type="submit" id="loginBtn" value="로그인"><br>
+				<input type="submit" id="loginBtn" value="Login"><br>
 			</form>
 			<p id="join"> <a href="${ pageContext.servletContext.contextPath }/member/join">SignUp</a>
 		</div>
 
 	</div>
-
-	<!-- 푸터 연결 -->
-	<%@ include file="../common/footer.jsp"%>
 
 	<script>
 		$(document).ready(function() {

@@ -50,5 +50,9 @@
      </property>
     </bean>
     
+    <mybatis-spring:scan base-package="com.syi.project.member.mapper" />
+	<context:component-scan base-package="com.syi.project.member.model"></context:component-scan>
+	<context:component-scan base-package="com.syi.project.member.service"></context:component-scan>
+    
 		
 </beans>
