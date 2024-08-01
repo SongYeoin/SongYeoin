@@ -11,7 +11,7 @@
 header {
 	background-color: black;
 	color: white;
-	padding: 30px;
+	padding: 20px; /* 헤더 높이 줄임 */
 	display: flex;
 	align-items: center;
 	position: fixed;
@@ -63,9 +63,9 @@ header {
         </div>
         </div>
         <div class="btns">
-			<i class="bi bi-chat fs-1"></i>
-        	<button type="button" class="btn btn-light">Mypage</button>
-        	<button type="button" class="btn btn-secondary">Logout</button>
+		<i class="bi bi-chat fs-3"></i>
+        	<i class="bi bi-person fs-3"></i> <!-- 마이페이지 아이콘 -->
+        	<i class="bi bi-box-arrow-right fs-3"></i> <!-- 로그아웃 아이콘 -->
         </div>
     </header>
 
