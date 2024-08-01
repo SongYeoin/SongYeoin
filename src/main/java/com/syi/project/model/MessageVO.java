@@ -1,4 +1,4 @@
-package com.syi.project.chat.model;
+package com.syi.project.model;
 
 import java.util.Date;
 
@@ -8,12 +8,12 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import lombok.Data;
 
-@Document(collection = "chat")
+@Document(collection = "messages")
 @Data
 public class MessageVO {
 
 	@Id
-	private String messageNo;
+	private String id;
 	
 	@Field(name = "content")
 	private String content;

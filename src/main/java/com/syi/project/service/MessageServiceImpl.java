@@ -1,12 +1,12 @@
-package com.syi.project.chat.service;
+package com.syi.project.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.syi.project.chat.model.MessageVO;
-import com.syi.project.chat.repository.ChatRepository;
+import com.syi.project.model.MessageVO;
+import com.syi.project.repository.ChatRepository;
 
 @Service
 public class MessageServiceImpl implements MessageService {
