@@ -53,5 +53,11 @@
     <mybatis-spring:scan base-package="com.syi.project.member.mapper" />
 	<context:component-scan base-package="com.syi.project.member.model, com.syi.project.member.service "></context:component-scan>
 
+<!--chat 관련 mvc  -->
+<context:component-scan base-package="com.syi.project.config" />	
+<context:component-scan base-package="com.syi.project.chat.model" />	
+<context:component-scan base-package="com.syi.project.chat.service" />	
+	
+
 		
 </beans>
