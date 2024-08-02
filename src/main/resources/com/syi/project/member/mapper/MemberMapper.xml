@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.syi.project.member.mapper.MemberMapper">
+  
+  <!-- 로그인 -->
+  <select id="selectLoginMember" resultType="com.syi.project.member.model.MemberVO">
+  	SELECT *
+  	FROM MEMBER
+  	WHERE MEMBERID = #{ memberId }
+  		AND MEMBER_STATUS = 'Y'
+  		AND MEMBER_CHECK_STATUS = 'Y'
+  </select>
+  
+  
+  </mapper>
