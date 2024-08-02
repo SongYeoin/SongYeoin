@@ -91,11 +91,11 @@ main {
 
 	<main>
     <div class="button-container">
-        <a href="student-mode.html" class="mode-button student">
+        <a href="${ pageContext.servletContext.contextPath }/member/login" class="mode-button student">
             <i class="fas fa-user-graduate"></i> <!-- Font Awesome 아이콘 추가 -->
             <br>수강생 모드
         </a>
-        <a href="admin-mode.html" class="mode-button admin">
+        <a href="${ pageContext.servletContext.contextPath }/admin/login" class="mode-button admin">
             <i class="fas fa-user-cog"></i> <!-- Font Awesome 아이콘 추가 -->
             <br>관리자 모드
         </a>
