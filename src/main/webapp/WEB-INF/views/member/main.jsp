@@ -61,25 +61,25 @@ body {
 }
 
 .section1 {
-	background-color: #EEEEEE;
+	background-color: #E3E3D1;
 	padding-top: 120px;
 }
 
 .section2 {
-	background-color: #FFC452;
+	background-color: #FC5000;
 	padding-top: 120px;
 }
 
 .section3 {
-	background-color: #C8C8C8;
+	background-color: #68EF97;
 }
 
 .section4 {
-	background-color: #F76C8D;
+	background-color: #FCEF70;
 }
 
 .section5 {
-	background-color: #B5C9FF;
+	background-color: #98E5FC;
 }
 
 /* 메뉴 제목 스타일 */
