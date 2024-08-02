@@ -1,4 +1,4 @@
-package com.syi.project.model;
+package com.syi.project.chat.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,6 +11,5 @@ public class ChatRoomVO {
 	
 	@Id
 	private String id;
-	private 
-
+	
 }

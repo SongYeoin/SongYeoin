@@ -1,4 +1,4 @@
-package com.syi.project.service;
+package com.syi.project.chat.service;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
-import com.syi.project.model.ChatRoomVO;
+import com.syi.project.chat.model.ChatRoomVO;
 
 @Service
 public class ChatServiceImpl implements ChatService {

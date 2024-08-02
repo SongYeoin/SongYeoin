@@ -1,4 +1,4 @@
-package com.syi.project.controlller;
+package com.syi.project.chat.controller;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.syi.project.model.MessageVO;
-import com.syi.project.service.MessageService;
+import com.syi.project.chat.model.MessageVO;
+import com.syi.project.chat.service.MessageService;
 
 @RestController
 @RequestMapping("/message")

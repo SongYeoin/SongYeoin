@@ -1,8 +1,8 @@
-package com.syi.project.service;
+package com.syi.project.chat.service;
 
 import java.util.List;
 
-import com.syi.project.model.MessageVO;
+import com.syi.project.chat.model.MessageVO;
 
 public interface MessageService {
 	

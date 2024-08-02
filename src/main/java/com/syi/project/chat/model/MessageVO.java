@@ -1,4 +1,4 @@
-package com.syi.project.model;
+package com.syi.project.chat.model;
 
 import java.util.Date;
 
