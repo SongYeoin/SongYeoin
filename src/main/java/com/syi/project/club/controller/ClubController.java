@@ -1,4 +1,4 @@
-package com.syi.project.controlller;
+package com.syi.project.club.controller;
 
 public class ClubController {
 

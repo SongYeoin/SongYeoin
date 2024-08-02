@@ -1,4 +1,4 @@
-package com.syi.project.controlller;
+package com.syi.project;
 
 import java.text.DateFormat;
 import java.util.Date;

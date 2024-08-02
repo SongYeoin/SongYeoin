@@ -1,4 +1,4 @@
-package com.syi.project.controlller;
+package com.syi.project;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
