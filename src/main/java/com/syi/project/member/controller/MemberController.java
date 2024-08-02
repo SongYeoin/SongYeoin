@@ -21,8 +21,9 @@ public class MemberController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
-	@Autowired
-	private BCryptPasswordEncoder pwEncoder;
+	/*
+	 * @Autowired private BCryptPasswordEncoder pwEncoder;
+	 */
 	
 	// 로그인 페이지 이동
 	@GetMapping("login")

@@ -10,7 +10,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 
 @Configuration
-@EnableMongoRepositories(basePackages = "com.syi.project.repository")
+@EnableMongoRepositories(basePackages = "com.syi.project.chat.repository")
 public class MongoDBConfig {
 	private static final String CONNECTION_STRING = "mongodb://songyeoin:1234@localhost:27017/chat?authSource=admin";
 
