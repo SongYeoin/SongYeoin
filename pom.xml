@@ -246,7 +246,20 @@
     <version>${org.springframework-version}</version>
 </dependency>
 		
-		
+<!-- MongoDB 관련 -->
+		<!-- https://mvnrepository.com/artifact/org.mongodb/mongodb-driver-sync -->
+<dependency>
+    <groupId>org.mongodb</groupId>
+    <artifactId>mongodb-driver-sync</artifactId>
+    <version>4.4.0</version>
+</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-mongodb -->
+<dependency>
+    <groupId>org.springframework.data</groupId>
+    <artifactId>spring-data-mongodb</artifactId>
+    <version>3.3.7</version>
+</dependency>				
 		
 		
 		
