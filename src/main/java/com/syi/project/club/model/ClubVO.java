@@ -1,4 +1,4 @@
-package com.syi.project.club.model;
+package com.syi.project.model;
 
 public class ClubVO {
 

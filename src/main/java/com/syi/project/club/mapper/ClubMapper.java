@@ -1,4 +1,4 @@
-package com.syi.project.club.mapper;
+package com.syi.project.mapper;
 
 public class ClubMapper {
 
