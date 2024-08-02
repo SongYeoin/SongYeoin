@@ -21,6 +21,8 @@ footer {
 	position: relative;
 	bottom: 0;
 	width: 100%;
+	left: 0;
+	z-index: 1000; /* 다른 요소들 위에 위치하도록 함 */
 }
 
 .footer-container {

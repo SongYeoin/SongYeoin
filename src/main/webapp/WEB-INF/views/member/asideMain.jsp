@@ -19,11 +19,15 @@
 	box-sizing: border-box;
 }
 
+html, body {
+	height: 1080px;
+}
+
 body {
 	font-family: Arial, sans-serif;
 	display: flex;
 	flex-direction: column;
-	min-height: 100vh;
+	/* min-height: 100vh; */
 }
 
 main {
@@ -31,6 +35,14 @@ main {
 	margin-left: 250px;
 	padding-top: 90px;
 	overflow-y: auto;
+	top: 120px;
+	left: 250px;
+	background-color: yellow;
+}
+
+.box{
+	height: 100%;
+
 }
 </style>
 </head>
@@ -40,10 +52,13 @@ main {
 	<%@ include file="../common/header.jsp"%>
 
 	<!-- 사이드바 연결 -->	
-	<%@ include file="asideClass.jsp"%>
+	<%@ include file="aside.jsp"%>
 
    <main>
-        <!-- Main content -->
+        <!-- Main content -->   
+        <div class="box">
+        	글자라도 써봅니다
+        </div>
     </main>
 
 	<!-- 푸터 연결 -->
