@@ -1,5 +1,7 @@
 package com.syi.project.member.controller;
 
+import java.util.Random;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.syi.project.member.model.MemberVO;
@@ -28,7 +31,6 @@ public class MemberController {
 
 	@Autowired
 	private BCryptPasswordEncoder pwdEncoder;
-	 
 
 	// 로그인 페이지 이동
 	@GetMapping("login")
@@ -41,7 +43,7 @@ public class MemberController {
 	public void joinGet() {
 		logger.info("회원가입 페이지 이동");
 	}
-	
+
 	// 마이페이지 이동
 	@GetMapping("mypage")
 	public void mypageGet() {
@@ -49,12 +51,71 @@ public class MemberController {
 	}
 
 	// 아이디 중복 체크
+	@PostMapping("/member/check-id")
+	@ResponseBody
+	public String checkMemberIdPost(String memberId) {
+		System.out.println("memberId는 " + memberId);
+		int result = memberService.selectCountByMemberId(memberId);
+		System.out.println("result는 " + result);
+		if (result != 0) {
+			return "fail";
+		} else {
+			return "success";
+		}
+	}
+
+	// 이메일 중복 체크
+	@PostMapping("/member/check-email")
+	@ResponseBody
+	public String checkMemberEmailCheckPost(String memberEmail) {
+		int result = memberService.selectCountByMemberEmail(memberEmail);
+		if (result != 0) {
+			return "fail";
+		} else {
+			return "success";
+		}
+	}
+
+	// 이메일 인증
+	@GetMapping("verify-email")
+	@ResponseBody
+	public String verifyMemberEmail(String email) {
+		Random random = new Random();
+		int checkNum = random.nextInt(888888) + 111111;
+		logger.info("인증번호 " + checkNum);
+
+		String setFrom = "";
+		String toMail = email;
+		String title = "회원가입 인증 메일입니다.";
+		String content = "홈페이지를 방분해주셔서 감사합니다." + "<br><br>" + "인증 번호는 " + checkNum + "입니다. " + "<br>"
+				+ "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+
+		/*
+		 * try { MimeMessage message = mailSender.createMimeMessage(); MimeMessageHelper
+		 * helper = new MimeMessageHelper(message, true, "utf-8");
+		 * helper.setFrom(setFrom); helper.setTo(toMail); helper.setSubject(title);
+		 * helper.setText(content, true); mailSender.send(message); } catch(Exception e)
+		 * { e.printStackTrace(); }
+		 */
+		String num = Integer.toString(checkNum);
+		return num;
+	}
 
 	// 회원가입
+	@PostMapping("join")
+	public String joinPost(MemberVO requestMember) {
+		String rawPwd = requestMember.getMemberPwd();
+		String encodePwd = pwdEncoder.encode(rawPwd);
+		requestMember.setMemberPwd(encodePwd);
+
+		memberService.insertMember(requestMember);
+		return "redirect:/";
+	}
 
 	// 로그인
 	@PostMapping("login")
-	public String loginPost(HttpServletRequest request, MemberVO requestMember, RedirectAttributes rttr) throws Exception {
+	public String loginPost(HttpServletRequest request, MemberVO requestMember, RedirectAttributes rttr)
+			throws Exception {
 
 		MemberVO loginMember = memberService.selectLoginMember(requestMember);
 
@@ -69,7 +130,6 @@ public class MemberController {
 			rttr.addFlashAttribute("result", 1);
 			return "redirect:/member/login";
 		}
-		
 
 		// 미승인 회원
 		if ("N".equals(loginMember.getMemberCheckStatus())) {
