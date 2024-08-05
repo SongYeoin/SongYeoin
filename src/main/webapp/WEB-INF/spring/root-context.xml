@@ -47,22 +47,10 @@
      </property>
     </bean>
 
-
 	
-<!-- <mybatis-spring:scan base-package="com.syi.project.mapper"/>	
-
-<context:component-scan base-package="com.syi.project.model" />	
-<context:component-scan base-package="com.syi.project.service" />
-    
-<mybatis-spring:scan base-package="com.syi.project.member.mapper" />
-<context:component-scan base-package="com.syi.project.member.model, com.syi.project.member.service "></context:component-scan>
-
-<!--chat 관련 mvc  -->
-	
-<context:component-scan base-package="com.syi.project.chat.model" />	
-<context:component-scan base-package="com.syi.project.chat.service" />	 
-<context:component-scan base-package="com.syi.project.config" />
-	
-
+<mybatis-spring:scan base-package="com.syi.project.mapper.**" />
+<context:component-scan base-package="com.syi.project.model.**"/>
+<context:component-scan base-package="com.syi.project.service.**"/>
+<context:component-scan base-package="com.syi.project.config.**" />
 		
 </beans>

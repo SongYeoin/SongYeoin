@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.syi.project.chat.model.MessageVO;
-import com.syi.project.chat.service.MessageService;
+import com.syi.project.model.chat.MessageVO;
+import com.syi.project.service.chat.MessageService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")

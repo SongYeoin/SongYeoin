@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.syi.project.journal.mapper.JournalMapper;
-import com.syi.project.journal.model.JournalVO;
+import com.syi.project.mapper.journal.JournalMapper;
+import com.syi.project.model.journal.JournalVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")

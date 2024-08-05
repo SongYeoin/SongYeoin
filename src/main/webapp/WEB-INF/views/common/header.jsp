@@ -45,6 +45,10 @@ header {
 	display: flex;
 	gap: 10px;
 }
+
+.chat-move:hover {
+	cursor: pointer;
+}
 </style>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -63,7 +67,7 @@ header {
         </div>
         </div>
         <div class="btns">
-		<i class="bi bi-chat fs-3"></i>
+		<i class="bi bi-chat fs-3 chat-move" onclick="location.href='${pageContext.servletContext.contextPath}chatroom/main'"></i>
         	<i class="bi bi-person fs-3"></i> <!-- 마이페이지 아이콘 -->
         	<i class="bi bi-box-arrow-right fs-3"></i> <!-- 로그아웃 아이콘 -->
         </div>
