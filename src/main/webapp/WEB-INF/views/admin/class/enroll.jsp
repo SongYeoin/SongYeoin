@@ -105,16 +105,16 @@ main {
 <body>
 
 	<!-- 메뉴바 연결 -->
-	<%@ include file="../common/header.jsp"%>
+	<%@ include file="../../common/header.jsp"%>
 
 	<!-- 사이드바 연결 -->	
-	<%@ include file="../admin/aside.jsp"%>
+	<%@ include file="../../admin/aside.jsp"%>
 
    	<main>
         <!-- Main content -->
 	    <div class="form-container">
 	        <h2>반 등록</h2>
-	        <form action="/syclass/enroll" method="post" id="class-registration-form">
+	        <form action="/admin/class/enroll" method="post" id="class-registration-form">
 	            <div class="form-group">
 	                <label for="className">반 이름:</label>
 	                <input type="text" id="className" name="className" required>
@@ -152,8 +152,7 @@ main {
     </main>
 
 	<!-- 푸터 연결 -->
-	<%@ include file="../common/footer.jsp"%>
-	
+	<%@ include file="../../common/footer.jsp"%>
 <script>
 
 $(document).ready(function() {
@@ -188,7 +187,7 @@ $(document).ready(function() {
     
     if (enrollResult === 'success') {
     	if (confirm('반 등록이 성공적으로 완료되었습니다. 다른 페이지로 이동하시겠습니까?')) {
-            window.location.href = "/다른페이지"; // 리다이렉트할 URL로 변경
+            window.location.href = "/admin/main"; // 리다이렉트할 URL로 변경
         }
         
     } else if (enrollResult === 'fail') {

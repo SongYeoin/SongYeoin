@@ -13,7 +13,7 @@ import com.syi.project.service.syclass.SyclassService;
 import lombok.extern.log4j.Log4j2;
 
 @Controller
-@RequestMapping("/syclass")
+@RequestMapping("/admin")
 @Log4j2
 public class SyclassController {
 	
@@ -21,13 +21,13 @@ public class SyclassController {
 	SyclassService syclassService;
 	
 	/* 반 등록 페이지 이동 */
-	@GetMapping("/enroll")
+	@GetMapping("/class/enroll")
 	public void classEnrollGET() throws Exception{
 		log.info("반 등록 페이지 이동");
 	}
 	
 	/* 반 등록하기 */
-	@PostMapping("/enroll")
+	@PostMapping("/class/enroll")
 	public String classEnrollPOST(SyclassVO syclass, RedirectAttributes rttr) throws Exception{
 		log.info("반 등록하기 시작");
 		String result;
@@ -38,7 +38,7 @@ public class SyclassController {
 		
 		rttr.addFlashAttribute("enroll_result", result);
 		
-		return "redirect:/syclass/enroll";
+		return "redirect:/admin/class/enroll";
 	}
 
 }
