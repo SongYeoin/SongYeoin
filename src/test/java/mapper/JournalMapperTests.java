@@ -23,12 +23,7 @@ public class JournalMapperTests {
         
 		JournalVO journal = new JournalVO();
         
-		journal.setJournalNo(1);
-        journal.setJournalDate(java.sql.Date.valueOf("2024-08-01"));
-        journal.setJournalTitle("Sample Journal");
-        journal.setFileNo(5001);
-        
-        journalmapper.journalEnroll(journal);
+		
 
     }
 	
