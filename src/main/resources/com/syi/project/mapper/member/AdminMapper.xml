@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.syi.project.mapper.member.MemberMapper">
+  <mapper namespace="com.syi.project.mapper.member.AdminMapper">
   
 
   <resultMap type="com.syi.project.model.member.MemberVO" id="memberResultMap">
@@ -29,58 +29,13 @@
 	
 
   <!-- 로그인 -->
-  <select id="selectLoginMember" resultMap="memberResultMap">
+  <select id="selectLoginAdmin" resultMap="memberResultMap">
   	SELECT *
   	FROM MEMBER
   	WHERE MEMBER_ID = #{ memberId }
   		AND MEMBER_STATUS = 'Y'
   		AND MEMBER_CHECK_STATUS = 'Y'
-  		AND MEMBER_ROLE = 'ROLE_MEMBER'
+  		AND MEMBER_ROLE = 'ROLE_ADMIN'
   </select>
-  
-  <!-- 아이디 중복체크 -->
-  <select id="selectCountByMemberId" resultType="_int">
-  	SELECT
-  		COUNT(MEMBER_NO)
-  	FROM MEMBER
-  	WHERE MEMBER_ID = #{ memberId }
-  </select>
-  
-  <!-- 이메일 중복체크 -->
-  <select id="selectCountByMemberEmail" resultType="_int">
-  	SELECT
-  		COUNT(MEMBER_NO)
-  	FROM MEMBER
-  	WHERE MEMBER_EMAIL = #{ memberEmail }
-  </select>
-  
-  <!-- 회원가입 -->
-  <insert id="insertMember">
-  	INSERT INTO 'MEMBER" (
-    "MEMBER_ID", 
-    "MEMBER_PWD", 
-    "MEMBER_NAME", 
-    "MEMBER_BIRTHDAY", 
-    "MEMBER_GENDER", 
-    "MEMBER_PHONE", 
-    "MEMBER_EMAIL", 
-    "MEMBER_ADDRESS", 
-    "MEMBER_STREET_ADDRESS", 
-    "MEMBER_DETAIL_ADDRESS", 
-    "MEMBER_NICKNAME"
-) VALUES (
-    #{ memberId },
-    #{ memberPwd },
-    #{ memberName },
-    #{ memberBirthday },
-    #{ memberGender },
-    #{ memberPhone },
-    #{ memberEmail },
-    #{ memberAddress },
-    #{ memberStreetAddress },
-    #{ memberDetailAddress },
-    #{ memberNickname }
-);
-  </insert>
   
   </mapper>

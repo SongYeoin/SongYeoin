@@ -214,7 +214,7 @@ p a:hover {
 		            type: "post",
 		            data: {memberId: memberId},
 		            success: function(data) {
-		                if (data.trim() === 'pass') {
+		                if (data.trim() === 'success') {
 		                    $("#memberIdType").text("사용 가능한 ID 입니다.").removeClass('invalid').addClass('valid');
 		                } else {
 		                    $("#memberIdType").text("이미 사용 중인 ID 입니다.").removeClass('valid').addClass('invalid');
@@ -307,7 +307,7 @@ p a:hover {
 		            type: "post",
 		            data: {memberEmail: memberEmail},
 		            success: function(data) {
-		                if (data.trim() === 'pass') {
+		                if (data.trim() === 'success') {
 		                    $("#memberEmailType").text("사용 가능한 이메일입니다.").removeClass('invalid').addClass('valid');
 		                } else {
 		                    $("#memberEmailType").text("이미 사용 중인 이메일입니다.").removeClass('valid').addClass('invalid');

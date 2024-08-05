@@ -51,7 +51,7 @@ public class MemberController {
 	}
 
 	// 아이디 중복 체크
-	@PostMapping("/member/check-id")
+	@PostMapping("check-id")
 	@ResponseBody
 	public String checkMemberIdPost(String memberId) {
 		System.out.println("memberId는 " + memberId);
@@ -65,7 +65,7 @@ public class MemberController {
 	}
 
 	// 이메일 중복 체크
-	@PostMapping("/member/check-email")
+	@PostMapping("check-email")
 	@ResponseBody
 	public String checkMemberEmailCheckPost(String memberEmail) {
 		int result = memberService.selectCountByMemberEmail(memberEmail);
@@ -116,9 +116,9 @@ public class MemberController {
 	@PostMapping("login")
 	public String loginPost(HttpServletRequest request, MemberVO requestMember, RedirectAttributes rttr)
 			throws Exception {
-
+		
 		MemberVO loginMember = memberService.selectLoginMember(requestMember);
-
+		
 		// 사용자 존재하지 않음
 		if (loginMember == null) {
 			rttr.addFlashAttribute("result", 1);
