@@ -23,7 +23,7 @@ public class ChatController {
 	}
 	
 //	chatRoom 입장
-	@GetMapping("main")
+	@GetMapping("/main")
 	public void chatRoomGET() {
 		logger.info("chatRoomGET() 진입....");
 //		chatService.insertChatRoom()
