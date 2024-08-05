@@ -1,5 +1,7 @@
 package com.syi.project.service.syclass;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,11 @@ public class SyclassService {
 	/* 반 등록하기 */
 	public int classEnroll(SyclassVO syclass) {
 		return syclassMapper.classEnroll(syclass);
+	}
+
+	/* 반 목록 조회 */
+	public List<SyclassVO> getClassList() {
+		return syclassMapper.getClassList();
 	}
 
 }

@@ -9,5 +9,22 @@
     insert into class (class_Name, description, manager_Name, teacher_Name, start_Date, end_Date, classroom_Name)
     values (#{className}, #{description}, #{managerName}, #{teacherName,jdbcType=VARCHAR}, #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{classroomName,jdbcType=VARCHAR})
     </insert>
+    
+    <!-- 전체 조회 -->
+    <select id="getClassList" resultType="com.syi.project.model.syclass.SyclassVO">
+    SELECT 
+            class_no AS classNo,
+            class_name AS className,
+            description,
+            manager_name AS managerName,
+            teacher_name AS teacherName,
+            start_date AS startDate,
+            end_date AS endDate,
+            classroom_name AS classroomName,
+            enroll_date AS enrollDate,
+            modified_date AS modifiedDate,
+            class_status AS classStatus
+    FROM class
+    </select>
 
 </mapper>

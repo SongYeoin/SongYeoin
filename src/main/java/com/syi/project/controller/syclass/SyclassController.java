@@ -1,7 +1,10 @@
 package com.syi.project.controller.syclass;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +42,20 @@ public class SyclassController {
 		rttr.addFlashAttribute("enroll_result", result);
 		
 		return "redirect:/admin/class/enroll";
+	}
+	
+	/* 반 조회 페이지 이동 */
+	@GetMapping("/class/getClassList")
+	public void getClassListGET(Model model) throws Exception{
+		log.info("반 목록 조회 페이지 이동");
+		
+		List<SyclassVO> classList = syclassService.getClassList();
+		
+		if (!classList.isEmpty()) {
+			model.addAttribute("classList", classList);
+		} else {
+			model.addAttribute("listCheck", "empty");
+		}
 	}
 
 }
