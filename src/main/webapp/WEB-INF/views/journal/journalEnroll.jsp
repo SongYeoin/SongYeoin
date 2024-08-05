@@ -13,22 +13,24 @@
 </head>
 </head>
 <body>
-
+	<%-- <!-- 메뉴바 연결 -->
+	<%@ include file="../common/header.jsp"%>
+	
+	<!-- 사이드바 연결 -->	
+	<%@ include file="aside.jsp"%> --%>
 
 	<div class="journal_content_wrap">
 		<div class="journal_content_subject">
 			<span>교육일지 등록</span>
 		</div>
 		<div class="journal_content_main">
-			<form action="/journal/journalEnroll.do" method="post"
-				id="enrollForm">
+			<form action="/journal/journalEnroll.do" method="post" id="enrollForm">
 				<div class="form_section">
 					<div class="form_section_title">
 						<label>교육일지 제목</label>
 					</div>
 					<div class="form_section_content">
-						<input name="journalTitle"> <span id="warn_journalTitle">교육일지
-							제목을 입력 해주세요.</span>
+						<input name="journalTitle"> <span id="warn_journalTitle">교육일지 제목을 입력 해주세요.</span>
 					</div>
 				</div>
 				<div class="form_section">
@@ -37,8 +39,7 @@
 					</div>
 					<div class="form_section_content">
 						<!-- 날짜 선택을 위한 input 요소 -->
-						<input type="date" id="writeDate" name="writeDate" /> <span
-							id="warn_date">날짜를 선택해주세요.</span>
+						<input type="date" id="writeDate" name="writeDate" /> <span id="warn_date">날짜를 선택해주세요.</span>
 					</div>
 				</div>
 				<div class="form_section">
@@ -47,8 +48,7 @@
 					</div>
 					<div class="form_section_content">
 						<!-- 파일 첨부를 위한 input 요소 -->
-						<input name="fileNo" type="file" id="fileNo" /> <span
-							id="warn_fileNo">교육일지 파일을 첨부해주세요.</span>
+						<input name="fileNo" type="file" id="fileNo" /> <span id="warn_fileNo">교육일지 파일을 첨부해주세요.</span>
 					</div>
 				</div>
 			</form>
@@ -119,6 +119,7 @@
 		});
 	</script>
 
-
+	<%-- <!-- 푸터 연결 -->
+	<%@ include file="../common/footer.jsp"%> --%>
 </body>
 </html>
