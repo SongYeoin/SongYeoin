@@ -7,39 +7,46 @@
 <title>채팅방</title>
 
 <style>
-/*전체 크기 늘리기  */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 .content{
-	padding:80px 0 0 0;
-	overflow: visible;
-    position: relative; /* 자식 div의 절대 위치 기준을 설정 */
+	padding:80px 0 0;
+	flex: 1;
 }
 
 .total-content{
 	width: 100%;  /* section의 전체 너비 */
-    height: 100%; /* section의 전체 높이 */
+   	height: 100%; /* section의 전체 높이 */
     box-sizing: border-box; /* 패딩과 테두리의 크기를 포함하여 총 크기를 계산 */
-    margin:0px 30px;
+    max-width: 100%; /* 부모 요소나 뷰포트의 최대 너비를 설정 */
+	min-height: 100vh;
 }
-
-.add-margin{
-	margin: 16px 0px 16px;
-
-}
-
-.search-div{
-
-}
-
-.card-size{
-
-}
-
-/*card-body div 태그 밑으로 내리기  */
-.down-card{
-	
+.grid-rows{
+	display:grid;
+	grid-template-columns: 1fr 1.5fr;
+	gap: 10px; /* 열 사이의 간격 */
+    width: 100vw;  /* 뷰포트 너비의 100% */
+    height: 100vh; /* 뷰포트 높이의 100% */
+    box-sizing: border-box; /* 패딩과 보더를 포함하여 크기를 계산 */
+    overflow: hidden; /* 넘치는 내용을 숨김 */
 
 }
 
+
+.scrollable-div{
+	 width: 380px; /* 너비 설정 */
+     height: 650px; /* 높이 설정 */
+     border: 1px solid #ccc; /* 테두리 설정 */
+     overflow: auto; /* 스크롤을 자동으로 추가 */
+}
 
 a.custom{
 	 text-decoration: none !important;
@@ -67,13 +74,11 @@ a.custom{
 	<!-- 메뉴바 연결 -->
 	<%@ include file="../common/header.jsp"%>
 	<section class="content">
-		<div class="total-content py-5">
-		
-			
+		<div class="total-content py-4">
 
-			<div class="row">
-
-				<div class=" col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
+			<div class="grid-rows">
+				<div class="d-flex align-items-start">
+				<div class="col--7 p-3 border --bs-light-border-subtle rounded-3">
 				
 					<select class="form-select" aria-label="Default select example">
 					  <option selected>Open this select menu</option>
@@ -82,18 +87,13 @@ a.custom{
 					  <option value="3">Three</option>
 					</select>
 					
-					<div class="input-group mb-3">
-					  <input type="text" class="add-margin form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-					<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="add-margin mh-100 w-25 bi bi-search" viewBox="0 0 16 16">
-  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-</svg>
-					</div>
+					<form class="d-flex align-items-center" role="search">
+				        <input class="form-control" type="search" placeholder="학생 이름을 검색해주세요." aria-label="Search">
+				        <button class="my-3  ms-2 btn btn-outline-dark text-nowrap" type="submit">검색</button>
+				     </form>
 					
-
-					<h5 class="add-margin font-weight-bold mb-3 text-center text-lg-start">Member</h5>
-
-					<div class="card-size card">
-						<div class="down-card card-body">
+					<div class="card">
+						<div class="card-body w-auto scrollable-div">
 
 							<ul class="list-unstyled mb-0">
 								<li class="p-2 border-bottom bg-body-tertiary"><a href="#!"
@@ -106,7 +106,7 @@ a.custom{
 												width="60">
 											<div class="pt-1">
 												<p class="fw-bold mb-0">John Doe</p>
-												<p class="small text-muted">Hello, Are you there?</p>
+												<p class="d-inline-block text-truncate small text-muted" style="max-width: 150px;">Hello, Are you there?????????????</p>
 											</div>
 										</div>
 										<div class="pt-1">
@@ -218,17 +218,38 @@ a.custom{
 												class="fas fa-check" aria-hidden="true"></i></span>
 										</div>
 								</a></li>
+								<li class="p-2"><a href="#!"
+									class="custom d-flex justify-content-between">
+										<div class="d-flex flex-row">
+											<img
+												src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
+												alt="avatar"
+												class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
+												width="60">
+											<div class="pt-1">
+												<p class="fw-bold mb-0">Brad Pitt</p>
+												<p class="small text-muted">Lorem ipsum dolor sit.</p>
+											</div>
+										</div>
+										<div class="pt-1">
+											<p class="small text-muted mb-1">5 mins ago</p>
+											<span class="text-muted float-end"><i
+												class="fas fa-check" aria-hidden="true"></i></span>
+										</div>
+								</a></li>
 							</ul>
 
 						</div>
 					</div>
 
 				</div>
+				</div>
 
-				<div class="col-md-6 col-lg-7 col-xl-8">
+				<div class="d-flex align-items-start">
+				<div class="col-md-6 col-lg-7 col-xl-8 p-3 border --bs-light-border-subtle rounded-3">
 
 					<ul class="list-unstyled">
-						<li class="d-flex justify-content-between mb-4"><img
+						<li class="d-flex justify-content-between mb-6"><img
 							src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
 							alt="avatar"
 							class="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
@@ -246,7 +267,7 @@ a.custom{
 										dolore magna aliqua.</p>
 								</div>
 							</div></li>
-						<li class="d-flex justify-content-between mb-4">
+						<li class="d-flex justify-content-between mb-6">
 							<div class="card w-100">
 								<div class="card-header d-flex justify-content-between p-3">
 									<p class="fw-bold mb-0">Lara Croft</p>
@@ -264,7 +285,7 @@ a.custom{
 							class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong"
 							width="60">
 						</li>
-						<li class="d-flex justify-content-between mb-4"><img
+						<li class="d-flex justify-content-between mb-6"><img
 							src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
 							alt="avatar"
 							class="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
@@ -284,17 +305,17 @@ a.custom{
 							</div></li>
 						<li class="bg-white mb-3">
 							<div data-mdb-input-init class="form-outline">
-								<textarea class="form-control bg-body-tertiary"
+								<textarea class="form-control bg-body-tertiary mb-4"
 									id="textAreaExample2" rows="4"></textarea>
-								<label class="form-label" for="textAreaExample2">Message</label>
+								<label class="form-label" for="textAreaExample2">메시지</label>
 							</div>
 						</li>
 						<button type="button" data-mdb-button-init data-mdb-ripple-init
-							class="btn btn-info btn-rounded float-end">Send</button>
+							class="btn btn-info btn-rounded float-end">보내기</button>
 					</ul>
 
 				</div>
-
+				</div>
 			</div>
 
 		</div>
