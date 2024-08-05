@@ -26,5 +26,22 @@ public class MemberMapperTests {
 				
 		System.out.println("결과값 : " + memberMapper.selectLoginMember(member));
 	}
-
+	
+	// 회원가입
+	@Test
+	public void memberInsert() throws Exception {
+		MemberVO member = new MemberVO();
+		member.setMemberId("test01");
+		member.setMemberPwd("test01");
+		member.setMemberName("test");
+		member.setMemberBirthday("2000-01-01");
+		member.setMemberGender("F");
+		member.setMemberPhone("010-1234-5678");
+		member.setMemberEmail("test01@naver.com");
+		member.setMemberAddress("01234");
+		member.setMemberStreetAddress("test01");
+		member.setMemberDetailAddress("test01");
+		member.setMemberNickname("test01");
+		memberMapper.insertMember(member);
+	}
 }
