@@ -9,7 +9,7 @@
 
 <style>
 footer {
-	background-color: #B49AC5;
+	background-color: #BBB2FF;
 	color: white;
 	padding: 20px;
 	text-align: center;
@@ -21,6 +21,8 @@ footer {
 	position: relative;
 	bottom: 0;
 	width: 100%;
+	left: 0;
+	z-index: 1000; /* 다른 요소들 위에 위치하도록 함 */
 }
 
 .footer-container {

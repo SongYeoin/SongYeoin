@@ -61,25 +61,25 @@ body {
 }
 
 .section1 {
-	background-color: #EEEEEE;
-	padding-top: 120px;
+	background-color: #E3E3D1;
+	padding-top: 70px;
 }
 
 .section2 {
-	background-color: #FFC452;
-	padding-top: 120px;
+	background-color: #FC5000;
+	padding-top: 70px;
 }
 
 .section3 {
-	background-color: #C8C8C8;
+	background-color: #68EF97;
 }
 
 .section4 {
-	background-color: #F76C8D;
+	background-color: #FCEF70;
 }
 
 .section5 {
-	background-color: #B5C9FF;
+	background-color: #98E5FC;
 }
 
 /* 메뉴 제목 스타일 */
@@ -111,7 +111,7 @@ body {
 }
 
 .pd-top{
-	padding-top: 120px;
+	padding-top: 100px;
 }
 
 /* 소메뉴 글자 스타일 */
@@ -126,6 +126,7 @@ body {
 .section:hover .submenu {
 	display: block;
 }
+    
 </style>
 </head>
 <body>
