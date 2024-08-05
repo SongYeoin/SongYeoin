@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.syi.project.mapper.club.ClubMapper">
+  
+  <!-- 동아리 등록 -->
+  <insert id="enroll">
+  	insert into club(club_join, club_study_date, class_no, user_member_no, admin_member_no)
+  	values (#{join), #{studyDate}, #{classNo}, #{userMemberNo}, #{adminMemberNo})
+  </insert>
+  
+  
+  
+  </mapper>
