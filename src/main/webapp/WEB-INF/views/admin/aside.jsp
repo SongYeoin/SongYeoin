@@ -12,7 +12,7 @@
 	width: 250px;
 	background-color: #2c2c2c;
 	color: white;
-	height: calc(100vh - 70px);
+	height: 960px;
 	position: fixed;
 	top: 70px;
 	overflow-y: auto;

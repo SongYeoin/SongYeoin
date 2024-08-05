@@ -49,7 +49,7 @@ main {
 <body>
 
 	<!-- 메뉴바 연결 -->
-	<%@ include file="../common/header.jsp"%>
+	<%@ include file="../../common/header.jsp"%>
 
 	<!-- 사이드바 연결 -->	
 	<%@ include file="aside.jsp"%>
@@ -62,7 +62,7 @@ main {
     </main>
 
 	<!-- 푸터 연결 -->
-	<%@ include file="../common/footer.jsp"%>
+	<%@ include file="../../common/footer.jsp"%>
 
 </body>
 </html>

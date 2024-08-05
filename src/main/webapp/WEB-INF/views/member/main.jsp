@@ -62,12 +62,12 @@ body {
 
 .section1 {
 	background-color: #E3E3D1;
-	padding-top: 120px;
+	padding-top: 70px;
 }
 
 .section2 {
 	background-color: #FC5000;
-	padding-top: 120px;
+	padding-top: 70px;
 }
 
 .section3 {
@@ -111,7 +111,7 @@ body {
 }
 
 .pd-top{
-	padding-top: 120px;
+	padding-top: 100px;
 }
 
 /* 소메뉴 글자 스타일 */
@@ -126,6 +126,7 @@ body {
 .section:hover .submenu {
 	display: block;
 }
+    
 </style>
 </head>
 <body>
