@@ -1,4 +1,4 @@
-package mapper;
+package mapper.chat;
 
 import java.util.Date;
 
@@ -13,7 +13,7 @@ import com.syi.project.service.chat.MessageService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
-public class ChatRepositoryTests {
+public class MessageRepositoryTests {
 	
 	@Autowired
 	private MessageService messageService;

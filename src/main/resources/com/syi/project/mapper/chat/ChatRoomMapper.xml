@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.syi.project.mapper.chat.chatRoomMapper">
+  
+  	<select id="selectChatRoomList" resultType="com.syi.project.model.chat.ChatRoomVO">
+  		SELECT *
+  		FORM CHATROOM
+  		WHERE CHATROOM_MEMBER_NO = #{chatRoomMemberNo}
+  	</select>
+  
+  	<insert id="insertChatRoom">
+  		INSER INTO CHATROOM(
+  			CLASS_NO,
+  			CHATROOM_MEMBER_NO,
+  			CHATROOM_CREATEDATE,
+  			CHATROOM_ADMIN_NO
+  		)
+  		VALUES(
+  			#{classNo},
+  			#{chatRoomMemberNo},
+  			CURRENT_DATE,
+  			#{chatRoomAdminNo}
+  		)
+  	</insert>
+  
+  
+  </mapper>

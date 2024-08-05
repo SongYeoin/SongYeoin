@@ -6,8 +6,8 @@ import com.syi.project.model.chat.ChatRoomVO;
 
 public interface ChatService {
 
-	public List<ChatRoomVO> getChatRoomList(ChatRoomVO chatRoom);
-	
-	public void insertChatRoom(ChatRoomVO chatRoom);
+	int insertChatRoom(ChatRoomVO chatRoom);
+
+	List<ChatRoomVO> selectChatRoomList(int chatRoomMemberNo);
 	
 }
