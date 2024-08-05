@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.syi.project.mapper.syclass.SyclassMapper">
+
+    <!-- 등록 -->
+    <insert id="classEnroll" parameterType="com.syi.project.model.syclass.SyclassVO">
+    insert into class (class_Name, description, manager_Name, teacher_Name, start_Date, end_Date, classroom_Name)
+    values (#{className}, #{description}, #{managerName}, #{teacherName,jdbcType=VARCHAR}, #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{classroomName,jdbcType=VARCHAR})
+    </insert>
+
+</mapper>
