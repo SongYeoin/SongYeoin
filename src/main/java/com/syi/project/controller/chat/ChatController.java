@@ -22,13 +22,19 @@ public class ChatController {
 		this.chatService = chatService;
 	}
 	
-//	chatRoom 입장
+//	chatRoom 입장(채팅방 화면 보여주기)
 	@GetMapping("/main")
 	public void chatRoomGET() {
 		logger.info("chatRoomGET() 진입....");
-//		chatService.insertChatRoom()
 	}
 	
+	/*
+	 * 메시지를 처음 보낼시
+	 * => 보냄과 동시에 채팅방이 개설
+	 * 
+	 * 
+	 * 
+	 * */
 	
 	
 
