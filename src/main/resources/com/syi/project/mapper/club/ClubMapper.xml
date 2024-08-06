@@ -4,11 +4,31 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.syi.project.mapper.club.ClubMapper">
   
+  
+  <resultMap type="com.syi.project.model.club.ClubVO" id="clubResultMap">
+  <id property="clubNo" column="CLUB_NO" />
+  <result property="content" column="CLUB_CONTENT" />
+  <result property="join" column="CLUB_JOIN" />
+  <result property="studyDate" column="CLUB_STUDY_DATE"/>
+  <result property="regDate" column="CLUB_REG_DATE"/>
+  <result property="checkStatus" column="CLUB_CHECK_STATUS"/>
+  <result property="checkCmt" column="CLUB_CHECK_CMT"/>
+  <result property="classNo" column="CLASS_NO"/>
+  <result property="userMemberNo" column="USER_MEMBER_NO"/>
+  <result property="adminMemberNo" column="ADMIN_MEMBER_NO"/>
+  </resultMap>
+  
+  
+  <!-- 동아리 조회 --> <!-- select club_no as clubNo from club -->
+  <select id="getList" resultMap="clubResultMap">
+  	select * from club
+  </select>
+  
   <!-- 동아리 등록 -->
-  <insert id="enroll">
+<!--   <insert id="enroll">
   	insert into club(club_join, club_study_date, class_no, user_member_no, admin_member_no)
   	values (#{join), #{studyDate}, #{classNo}, #{userMemberNo}, #{adminMemberNo})
-  </insert>
+  </insert> -->
   
   
   
