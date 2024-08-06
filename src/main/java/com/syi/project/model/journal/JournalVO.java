@@ -13,13 +13,54 @@ public class JournalVO {
 	
 	private String journalTitle; // 일지 제목
 	
-	private int classNo; // 반 번호
-
-	private int memberNo; // 학생 번호
-
-	private int fileNo; // 파일 번호
-	
 	private List<JournalFileVO> journalFileList; // 첨부파일 정보
+
+	public int getJournalNo() {
+		return journalNo;
+	}
+
+	public void setJournalNo(int journalNo) {
+		this.journalNo = journalNo;
+	}
+
+	public Date getJournalDate() {
+		return journalDate;
+	}
+
+	public void setJournalDate(Date journalDate) {
+		this.journalDate = journalDate;
+	}
+
+	public Date getJournalModify() {
+		return journalModify;
+	}
+
+	public void setJournalModify(Date journalModify) {
+		this.journalModify = journalModify;
+	}
+
+	public String getJournalTitle() {
+		return journalTitle;
+	}
+
+	public void setJournalTitle(String journalTitle) {
+		this.journalTitle = journalTitle;
+	}
+
+
+	public List<JournalFileVO> getJournalFileList() {
+		return journalFileList;
+	}
+
+	public void setJournalFileList(List<JournalFileVO> journalFileList) {
+		this.journalFileList = journalFileList;
+	}
+
+	@Override
+	public String toString() {
+		return "JournalVO [journalNo=" + journalNo + ", journalDate=" + journalDate + ", journalModify=" + journalModify
+				+ ", journalTitle=" + journalTitle + ", journalFileList=" + journalFileList + "]";
+	}
 
 
 }

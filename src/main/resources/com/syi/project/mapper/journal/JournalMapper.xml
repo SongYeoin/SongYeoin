@@ -4,8 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.syi.project.mapper.journal.JournalMapper">
 
+	<!-- 일지 등록 -->
+	<insert id="journalEnroll" parameterType="com.syi.project.model.journal.JournalVO">
+  	
+  		insert into journal(journal_date, journal_modify, journal_title) 
+  		values(#{journalDate}, #{journalModify}, #{journalTitle})
 
+  	</insert>	
 
+	
+	<!-- 파일 정보 저장 -->
+    <insert id="saveJournalFile" parameterType="com.syi.project.model.journal.JournalFileVO">
+        INSERT INTO journal_file (file_original_name, file_saved_name, file_type, file_size, file_path, file_reg_date, journal_no)
+        VALUES (#{fileOriginalName}, #{fileSavedName}, #{fileType}, #{fileSize}, #{filePath}, #{fileRegDate}, #{journalNo})
+    </insert>
 
 
 </mapper>

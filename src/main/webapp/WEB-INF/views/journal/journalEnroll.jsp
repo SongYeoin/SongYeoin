@@ -4,60 +4,54 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>교육일지 등록</title>
 <link rel="stylesheet" href="../resources/css/journal/journalEnroll.css">
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"
 	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 	crossorigin="anonymous"></script>
 </head>
-</head>
 <body>
-	<%-- <!-- 메뉴바 연결 -->
-	<%@ include file="../common/header.jsp"%>
+		<%-- <!-- 메뉴바 연결 -->
+		<%@ include file="../common/header.jsp"%>
+		
+		<!-- 사이드바 연결 -->	
+		<%@ include file="aside.jsp"%> --%>
 	
-	<!-- 사이드바 연결 -->	
-	<%@ include file="aside.jsp"%> --%>
-
-	<div class="journal_content_wrap">
-		<div class="journal_content_subject">
-			<span>교육일지 등록</span>
-		</div>
-		<div class="journal_content_main">
-			<form action="/journal/journalEnroll.do" method="post" id="enrollForm">
-				<div class="form_section">
-					<div class="form_section_title">
-						<label>교육일지 제목</label>
-					</div>
-					<div class="form_section_content">
-						<input name="journalTitle"> <span id="warn_journalTitle">교육일지 제목을 입력 해주세요.</span>
-					</div>
-				</div>
-				<div class="form_section">
-					<div class="form_section_title">
-						<label>교육일지 작성일자</label>
-					</div>
-					<div class="form_section_content">
-						<!-- 날짜 선택을 위한 input 요소 -->
-						<input type="date" id="writeDate" name="writeDate" /> <span id="warn_date">날짜를 선택해주세요.</span>
-					</div>
-				</div>
-				<div class="form_section">
-					<div class="form_section_title">
-						<label for="journalFile">첨부파일</label>
-					</div>
-					<div class="form_section_content">
-						<!-- 파일 첨부를 위한 input 요소 -->
-						<input name="fileNo" type="file" id="fileNo" /> <span id="warn_fileNo">교육일지 파일을 첨부해주세요.</span>
-					</div>
-				</div>
-			</form>
-			<div class="btn_section">
-				<button id="cancelBtn" class="btn">취 소</button>
-				<button id="enrollBtn" class="btn enroll_btn">등 록</button>
-			</div>
-		</div>
-	</div>
+		<form action="/journal/journalEnroll.do" method="post" id="enrollForm" enctype="multipart/form-data">
+	    <!-- 폼 필드들 -->
+	    <div class="form_section">
+	        <div class="form_section_title">
+	            <label>교육일지 제목</label>
+	        </div>
+	        <div class="form_section_content">
+	            <input name="journalTitle" type="text" /> 
+	            <span id="warn_journalTitle">교육일지 제목을 입력 해주세요.</span>
+	        </div>
+	    </div>
+	    <div class="form_section">
+	        <div class="form_section_title">
+	            <label>교육일지 작성일자</label>
+	        </div>
+	        <div class="form_section_content">
+	            <input type="date" id="writeDate" name="writeDate" /> 
+	            <span id="warn_date">날짜를 선택해주세요.</span>
+	        </div>
+	    </div>
+	    <div class="form_section">
+	        <div class="form_section_title">
+	            <label for="files">첨부파일</label>
+	        </div>
+	        <div class="form_section_content">
+	            <input name="uploadFile" type="file" id="fileitem" /> 
+	            <span id="warn_fileNo">교육일지 파일을 첨부해주세요.</span>
+	        </div>
+	    </div>
+	    <div class="btn_section">
+	        <button id="cancelBtn" class="btn">취 소</button>
+	        <button id="enrollBtn" class="btn enroll_btn">등 록</button>
+	    </div>
+	</form>
 
 
 	<script>
@@ -71,7 +65,7 @@
 			/* 입력값 변수 */
 			let journalTitle = $('input[name=journalTitle]').val(); // 일지 제목
 			let writeDate = $('input[name=writeDate]').val(); // 일지 작성일자
-			let fileNo = $('input[name=fileNo]').val(); // 일지 첨부파일
+			let files = $('input[name=files]')[0].files; // 일지 첨부파일
 
 			/* 공란 경고 span 태그 */
 			let wJournalTitle = $('#warn_journalTitle');
@@ -97,7 +91,7 @@
 			}
 
 			/* 첨부파일 공란 체크 */
-			if (fileNo === '') {
+			if (files.length === 0) {
 				wFileNo.css('display', 'block');
 				fileCheck = false;
 			} else {
@@ -112,6 +106,59 @@
 				return;
 			}
 		});
+		
+		
+		/* 첨부파일 업로드 */
+		$("input[type='file']").on("change", function(e){
+			alert("동작");
+			
+			let formData = new FormData();
+			let fileInput = $("input[name="uploadFile"]");
+			let fileList = fileInput[0].files;
+			let fileObj = fileList[0];
+			
+			if(!fileCheck(fileObj.name, fileObj.size)){
+				return false;
+			}
+			
+			formData.append("uploadFile", fileObj);
+			
+			$.ajax({
+				url: '/journal/uploadAjaxAction',
+		    	processData : false,
+		    	contentType : false,
+		    	data : formData,
+		    	type : 'POST',
+		    	dataType : 'json',
+		    	success : function(result){
+		    		console.log(result);
+		    		showUploadFile(result);
+		    	},
+		    	error : function(result){
+		    		alert("한글 파일이 아닙니다.");
+		    	}
+			});		
+		});
+		
+		/* var, method related with uploadFile */
+		let regex = new RegExp("(.*?)\.(hwp)$");
+		let maxSize = 1048576; //1MB	
+		
+		function fileCheck(fileName, fileSize){
+
+			if(fileSize >= maxSize){
+				alert("파일 사이즈 초과");
+				return false;
+			}
+				  
+			if(!regex.test(fileName)){
+				alert("해당 종류의 파일은 업로드할 수 없습니다.");
+				return false;
+			}
+			
+			return true;		
+			
+		}	
 
 		/* 취소 버튼 */
 		$("#cancelBtn").click(function() {

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.syi.project.model.Criteria;
+import com.syi.project.model.journal.JournalFileVO;
 import com.syi.project.model.journal.JournalVO;
 
 @Mapper
@@ -12,6 +13,9 @@ public interface JournalMapper {
 
 	// 일지 등록
 	public void journalEnroll(JournalVO journal);
+	
+	// 파일 정보 저장
+    public void saveJournalFile(JournalFileVO journalFile);
 
 	// 일지 목록 List<>
 	public List<JournalVO> journalList(Criteria cri);
