@@ -45,7 +45,7 @@ h2 {
     margin-bottom: 20px;
     font-size: 24px;
     color: #333;
-     text-align: center;
+    text-align: center;
 }
 
 form input[type="text"], 
@@ -70,7 +70,7 @@ form input[type="submit"] {
 }
 
 form input[type="submit"]:hover {
-    background-color: #b3b3b3;
+    background-color: #0056b3;
 }
 
 .error {
@@ -82,15 +82,6 @@ form input[type="submit"]:hover {
     margin :5px;
 }
 
-#join {
-	text-align: right;
-}
-
-p a {
-    /* text-decoration: none; */
-    color: #000000;
-}
-
 </style>
 
 <body>
@@ -99,7 +90,7 @@ p a {
 
 		<div class="login-wrapper">
 			<h2>Login</h2>
-			<form action="${ pageContext.servletContext.contextPath }/member/login" method="post" id="login-form">
+			<form action="${ pageContext.servletContext.contextPath }/admin/login" method="post" id="login-form">
 				<p>ID</p>
 				<input type="text" name="memberId" id="memberId" placeholder="아이디를 입력하세요"><br>
 				<span id="memberIdError" class="error"></span> 
@@ -111,7 +102,6 @@ p a {
 				<input type="submit" id="loginBtn" value="로그인"><br>
 				<span id="loginError" class="error"></span>
 			</form>
-			<p id="join"> <a href="${ pageContext.servletContext.contextPath }/member/join">회원가입</a>
 		</div>
 
 	</div>
