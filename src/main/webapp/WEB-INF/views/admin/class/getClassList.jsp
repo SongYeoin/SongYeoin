@@ -180,57 +180,40 @@ th, td {
     margin-top: 20px;
 }
 
-
-footer {
-    background-color: #B49AC5;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    font-size: 12px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 1000;
+/* 드롭다운 메뉴 스타일 */
+.dropdown {
+    position: relative;
+    display: inline-block;
 }
 
-.footer-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    max-width: 1200px;
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
-.footer-section {
-    margin: 0 10px;
-    text-align: center;
-}
-
-.footer-section p {
-    margin: 5px 0;
-}
-
-.footer-section a {
-    color: white;
+.dropdown-content a {
+    color: black;
+    padding: 10px 12px;
     text-decoration: none;
+    display: block;
 }
 
-.footer-section a:hover {
-    text-decoration: underline;
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
 }
 
-.footer-section.logo {
-    font-size: 14px;
-    margin-right: 20px;
+.dropbtn {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0;
 }
 
-.arrow {
-    margin-left: auto;
-}
 </style>
 </head>
 <body>
@@ -248,7 +231,7 @@ footer {
                 <h1>Class</h1>
                 <input type="text" placeholder="Search..." id="search">
                 <div class="icons">
-                    <i class="fas fa-square-plus"></i>
+                    <a href="/admin/class/enroll"><i class="fas fa-square-plus"></i></a>
                     <i class="fas fa-filter"></i>
                 </div>
             </div>
@@ -275,7 +258,15 @@ footer {
                             <td class="${classItem.classStatus == 'Y' ? 'status-active' : 'status-inactive'}">
                                 <c:out value="${classItem.classStatus == 'Y' ? 'Active' : 'Inactive'}"/>
                             </td>
-                            <td>...</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="dropbtn" onclick="toggleDropdown(event)">...</button>
+                                    <div class="dropdown-content">
+                                        <a href="/admin/class/update?classNo=${classItem.classNo}">수정하기</a>
+                                        <a href="#">삭제하기</a>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                     </c:forEach>
                 </tbody>
@@ -289,6 +280,27 @@ footer {
 
     <!-- 푸터 연결 -->
     <%@ include file="../../common/footer.jsp"%>
+
+<script>
+let currentDropdown = null;
+
+function toggleDropdown(event) {
+    event.stopPropagation();
+    const dropdown = event.currentTarget.nextElementSibling;
+    if (currentDropdown && currentDropdown !== dropdown) {
+        currentDropdown.style.display = 'none';
+    }
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    currentDropdown = dropdown.style.display === 'block' ? dropdown : null;
+}
+
+window.onclick = function(event) {
+    if (currentDropdown && !event.target.matches('.dropbtn')) {
+        currentDropdown.style.display = 'none';
+        currentDropdown = null;
+    }
+}
+</script>
 
 </body>
 </html>

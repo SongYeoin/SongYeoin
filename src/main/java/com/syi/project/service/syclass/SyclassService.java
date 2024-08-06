@@ -23,5 +23,10 @@ public class SyclassService {
 	public List<SyclassVO> getClassList() {
 		return syclassMapper.getClassList();
 	}
+	
+	/* 반 상세 조회 */
+	public SyclassVO getClassDetail(int classNo) {
+		return syclassMapper.getClassDetail(classNo);
+	}
 
 }

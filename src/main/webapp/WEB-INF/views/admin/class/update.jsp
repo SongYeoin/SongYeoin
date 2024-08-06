@@ -6,9 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>송파여성인력개발센터</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<title>반 수정</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <style>
 
@@ -39,9 +38,8 @@ main {
 	left: 250px;
 }
 
-.box{
+.box {
 	height: 100%;
-
 }
 
 .form-container {
@@ -107,44 +105,44 @@ main {
 	<!-- 메뉴바 연결 -->
 	<%@ include file="../../common/header.jsp"%>
 
-	<!-- 사이드바 연결 -->	
+	<!-- 사이드바 연결 -->
 	<%@ include file="../../admin/aside.jsp"%>
 
    	<main>
         <!-- Main content -->
 	    <div class="form-container">
-	        <h2>반 등록</h2>
-	        <form action="/admin/class/enroll" method="post" id="class-registration-form">
+	        <h2>반 수정</h2>
+	        <form id="class-update-form">
 	            <div class="form-group">
 	                <label for="className">반 이름:</label>
-	                <input type="text" id="className" name="className" required>
+	                <input type="text" id="className" name="className" value="${classDtail.className}" disabled required>
 	            </div>
 	            <div class="form-group">
 	                <label for="description">설명:</label>
-	                <textarea id="description" name="description" required></textarea>
+	                <textarea id="description" name="description" disabled required>${classDtail.description}</textarea>
 	            </div>
 	            <div class="form-group">
 	                <label for="managerName">관리자명:</label>
-	                <input type="text" id="managerName" name="managerName" required>
+	                <input type="text" id="managerName" name="managerName" value="${classDtail.managerName}" disabled required>
 	            </div>
 	            <div class="form-group">
 	                <label for="teacherName">강사명:</label>
-	                <input type="text" id="teacherName" name="teacherName" required>
+	                <input type="text" id="teacherName" name="teacherName" value="${classDtail.teacherName}" disabled required>
 	            </div>
 	            <div class="form-group">
-	                <label for="classroomName">강의실:</label>
-	                <input type="text" id="classroomName" name="classroomName" required>
+	                <label for="classroom">강의실:</label>
+	                <input type="text" id="classroomName" name="classroomName" value="${classDtail.classroomName}" disabled required>
 	            </div>
 	            <div class="form-group">
 	                <label for="startDate">개강일:</label>
-	                <input type="date" id="startDate" name="startDate" required>
+	                <input type="date" id="startDate" name="startDate" value="${classDtail.startDate}" disabled required>
 	            </div>
 	            <div class="form-group">
 	                <label for="endDate">종강일:</label>
-	                <input type="date" id="endDate" name="endDate" required>
+	                <input type="date" id="endDate" name="endDate" value="${classDtail.endDate}" disabled required>
 	            </div>
 	            <div class="form-group">
-	                <button type="submit" id="enrollButton">등록</button>
+	                <button type="button" id="editButton">수정</button>
 	                <button type="button" id="cancelButton">취소</button>
 	            </div>
 	        </form>
@@ -153,48 +151,43 @@ main {
 
 	<!-- 푸터 연결 -->
 	<%@ include file="../../common/footer.jsp"%>
+
 <script>
-
 $(document).ready(function() {
-	// 폼 제출 이벤트 처리
-	$('#class-registration-form').on('submit', function(event) {
-		
-		// 기본 제출 동작 막기
-		event.preventDefault();
+	// 수정 버튼 클릭 시 입력 필드 활성화
+	$('#editButton').on('click', function() {
+		$('#class-update-form input, #class-update-form textarea').prop('disabled', false);
+		$('#editButton').text('수정완료');
+		$('#editButton').attr('id', 'saveButton');
+	});
 
-		// 간단한 검증
-		let valid = true;
-		$('#class-registration-form input, #class-registration-form textarea').each(function() {
-			if (!$(this).val()) {
-				valid = false;
-				alert('모든 필드를 채워주세요.');
-				return false; // break
+	// 저장 버튼 클릭 시 AJAX로 수정 요청
+	$(document).on('click', '#saveButton', function() {
+		$.ajax({
+			url: '/admin/class/update',
+			type: 'POST',
+			data: $('#class-update-form').serialize(),
+			success: function(response) {
+				if (response === 'success') {
+					alert('수정이 성공적으로 완료되었습니다.');
+					$('#class-update-form input, #class-update-form textarea').prop('disabled', true);
+					$('#saveButton').text('수정');
+					$('#saveButton').attr('id', 'editButton');
+				} else {
+					alert('수정에 실패하였습니다. 다시 시도해 주세요.');
+				}
+			},
+			error: function() {
+				alert('서버 오류가 발생했습니다. 다시 시도해 주세요.');
 			}
 		});
-
-		if (valid) {
-			this.submit(); // 폼 제출
-		}
 	});
 
 	// 취소 버튼 클릭 시 어드민 메인화면으로 이동
 	$('#cancelButton').on('click', function() {
 		location.href = "/admin/class/getClassList";
 	});
-	
-	// 서버에서 전달된 enroll_result 속성 확인
-    var enrollResult = '${enroll_result}';
-    
-    if (enrollResult === 'success') {
-    	if (confirm('반 등록이 성공적으로 완료되었습니다.')) {
-            window.location.href = "/admin/class/getClassList#"; // 리다이렉트할 URL로 변경
-        }
-        
-    } else if (enrollResult === 'fail') {
-        alert('반 등록에 실패하였습니다. 다시 시도해 주세요.');
-    }
 });
-
 </script>
 
 </body>

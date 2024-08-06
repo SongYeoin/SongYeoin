@@ -4,27 +4,34 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.syi.project.mapper.syclass.SyclassMapper">
 
-    <!-- 등록 -->
+	<resultMap id="classResultMap" type="com.syi.project.model.syclass.SyclassVO">
+		<id property="classNo" column="CLASS_NO"/>
+		<result property="className" column="CLASS_NAME"/>
+		<result property="description" column="description"/>
+		<result property="managerName" column="manager_name"/>
+		<result property="teacherName" column="teacher_name"/>
+		<result property="startDate" column="start_date"/>
+		<result property="endDate" column="end_date"/>
+		<result property="classroomName" column="classroom_name"/>
+		<result property="enrollDate" column="enroll_date"/>
+		<result property="modifiedDate" column="modified_date"/>
+		<result property="classStatus" column="class_status"/>
+	</resultMap>
+
+    <!-- 반 등록 -->
     <insert id="classEnroll" parameterType="com.syi.project.model.syclass.SyclassVO">
     insert into class (class_Name, description, manager_Name, teacher_Name, start_Date, end_Date, classroom_Name)
     values (#{className}, #{description}, #{managerName}, #{teacherName,jdbcType=VARCHAR}, #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{classroomName,jdbcType=VARCHAR})
     </insert>
     
-    <!-- 전체 조회 -->
-    <select id="getClassList" resultType="com.syi.project.model.syclass.SyclassVO">
-    SELECT 
-            class_no AS classNo,
-            class_name AS className,
-            description,
-            manager_name AS managerName,
-            teacher_name AS teacherName,
-            start_date AS startDate,
-            end_date AS endDate,
-            classroom_name AS classroomName,
-            enroll_date AS enrollDate,
-            modified_date AS modifiedDate,
-            class_status AS classStatus
-    FROM class
+    <!-- 반 전체 조회 -->
+    <select id="getClassList" resultMap="classResultMap">
+    SELECT * FROM class
+    </select>
+    
+    <!-- 반 상세 조회 -->
+    <select id="getClassDetail" resultMap="classResultMap">
+    SELECT * FROM class WHERE class_no=#{classNo}
     </select>
 
 </mapper>

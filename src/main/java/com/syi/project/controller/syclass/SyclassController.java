@@ -29,21 +29,6 @@ public class SyclassController {
 		log.info("반 등록 페이지 이동");
 	}
 	
-	/* 반 등록하기 */
-	@PostMapping("/class/enroll")
-	public String classEnrollPOST(SyclassVO syclass, RedirectAttributes rttr) throws Exception{
-		log.info("반 등록하기 시작");
-		String result;
-		
-		if (syclassService.classEnroll(syclass) > 0) {
-			result = "success";
-		} else result = "fail";
-		
-		rttr.addFlashAttribute("enroll_result", result);
-		
-		return "redirect:/admin/class/enroll";
-	}
-	
 	/* 반 조회 페이지 이동 */
 	@GetMapping("/class/getClassList")
 	public void getClassListGET(Model model) throws Exception{
@@ -51,11 +36,35 @@ public class SyclassController {
 		
 		List<SyclassVO> classList = syclassService.getClassList();
 		
-		if (!classList.isEmpty()) {
-			model.addAttribute("classList", classList);
-		} else {
-			model.addAttribute("listCheck", "empty");
-		}
+		if (!classList.isEmpty()) model.addAttribute("classList", classList);
+		else model.addAttribute("listCheck", "empty");
+		
 	}
+	
+	/* 반 상세 페이지 이동 */
+	@GetMapping("/class/update")
+	public void getClassDetailGET(Integer classNo, Model model) throws Exception{
+		log.info("반 상세 페이지 이동");
+		
+		SyclassVO syclassVO = syclassService.getClassDetail(classNo);
+		
+		model.addAttribute("classDtail", syclassVO);
+
+	}
+	
+	/* 반 등록하기 */
+	@PostMapping("/class/enroll")
+	public String classEnrollPOST(SyclassVO syclass, RedirectAttributes rttr) throws Exception{
+		log.info("반 등록하기 시작");
+		String result;
+		
+		if (syclassService.classEnroll(syclass) > 0) result = "success";
+		else result = "fail";
+		
+		rttr.addFlashAttribute("enroll_result", result);
+		
+		return "redirect:/admin/class/enroll";
+	}
+	
 
 }

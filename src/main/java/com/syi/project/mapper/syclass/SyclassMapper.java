@@ -12,4 +12,7 @@ public interface SyclassMapper {
 	/* 반 목록 조회 */
 	List<SyclassVO> getClassList();
 
+	/* 반 목록 조회 */
+	SyclassVO getClassDetail(int classNo);
+
 }
