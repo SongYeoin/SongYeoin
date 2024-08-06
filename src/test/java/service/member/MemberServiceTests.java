@@ -30,8 +30,24 @@ public class MemberServiceTests {
 		memberService.selectLoginMember(member);
 			
 		System.out.println("결과값 : " + memberService.selectLoginMember(member));
-
-    	
+    }
+    
+    // 회원가입
+    @Test
+    public void memberInsertTest() throws Exception {
+    	MemberVO member = new MemberVO();
+		member.setMemberId("test02");
+		member.setMemberPwd("test01");
+		member.setMemberName("test");
+		member.setMemberBirthday("19990101");
+		member.setMemberGender("F");
+		member.setMemberPhone("010-1234-5678");
+		member.setMemberEmail("test01@naver.com");
+		member.setMemberAddress("01234");
+		member.setMemberStreetAddress("test01");
+		member.setMemberDetailAddress("test01");
+		member.setMemberNickname("test01");
+		memberService.insertMember(member);
     }
 
 }

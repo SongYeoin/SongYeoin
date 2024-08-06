@@ -1,5 +1,6 @@
 package mapper.member;
 
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class MemberMapperTests {
 	
 	@Autowired
 	private MemberMapper memberMapper;
-	
+	/*
 	// 로그인
 	@Test
 	public void memberLogin() throws Exception {
@@ -26,7 +27,7 @@ public class MemberMapperTests {
 				
 		System.out.println("결과값 : " + memberMapper.selectLoginMember(member));
 	}
-	
+	*/
 	// 회원가입
 	@Test
 	public void memberInsert() throws Exception {
@@ -34,7 +35,7 @@ public class MemberMapperTests {
 		member.setMemberId("test01");
 		member.setMemberPwd("test01");
 		member.setMemberName("test");
-		member.setMemberBirthday("2000-01-01");
+		member.setMemberBirthday("19990101");
 		member.setMemberGender("F");
 		member.setMemberPhone("010-1234-5678");
 		member.setMemberEmail("test01@naver.com");

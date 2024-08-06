@@ -5,7 +5,7 @@
   
   <mapper namespace="com.syi.project.mapper.member.MemberMapper">
   
-
+ 
   <resultMap type="com.syi.project.model.member.MemberVO" id="memberResultMap">
 		<id property="memberNo" column="MEMBER_NO"/>
 		<result property="memberId" column="MEMBER_ID"/>
@@ -34,7 +34,6 @@
   	FROM MEMBER
   	WHERE MEMBER_ID = #{ memberId }
   		AND MEMBER_STATUS = 'Y'
-  		AND MEMBER_CHECK_STATUS = 'Y'
   		AND MEMBER_ROLE = 'ROLE_MEMBER'
   </select>
   
@@ -80,7 +79,7 @@
 	    #{ memberStreetAddress },
 	    #{ memberDetailAddress },
 	    #{ memberNickname }
-	);
+	)
   </insert>
   
   </mapper>

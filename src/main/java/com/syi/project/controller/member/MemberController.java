@@ -32,16 +32,16 @@ public class MemberController {
 	@Autowired
 	private BCryptPasswordEncoder pwdEncoder;
 
-	// 로그인 페이지 이동
+	// 수강생 로그인 페이지 이동
 	@GetMapping("login")
 	public void loginGet() {
-		logger.info("로그인 페이지 이동");
+		logger.info("수강생 로그인 페이지 이동");
 	}
 
-	// 회원가입 페이지 이동
+	// 수강생 회원가입 페이지 이동
 	@GetMapping("join")
 	public void joinGet() {
-		logger.info("회원가입 페이지 이동");
+		logger.info("수강생 회원가입 페이지 이동");
 	}
 
 	// 마이페이지 이동
@@ -101,7 +101,7 @@ public class MemberController {
 		return num;
 	}
 
-	// 회원가입
+	// 수강생 회원가입
 	@PostMapping("join")
 	public String joinPost(MemberVO requestMember) {
 		String rawPwd = requestMember.getMemberPwd();
@@ -112,7 +112,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 
-	// 로그인
+	// 수강생 로그인
 	@PostMapping("login")
 	public String loginPost(HttpServletRequest request, MemberVO requestMember, RedirectAttributes rttr)
 			throws Exception {
@@ -132,7 +132,7 @@ public class MemberController {
 		}
 
 		// 미승인 회원
-		if ("N".equals(loginMember.getMemberCheckStatus())) {
+		if (!"Y".equals(loginMember.getMemberCheckStatus())) {
 			rttr.addFlashAttribute("result", 0);
 			return "redirect:/member/login";
 		}

@@ -25,14 +25,14 @@ main {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: calc(100vh - 100px); /* 헤더와 푸터를 제외한 화면 높이 */
+	height: 100vh; 
 	background-color: #f0f0f0;
 }
 
 .button-container {
 	display: flex;
 	justify-content: center;
-	gap: 60px; /* 버튼 사이의 간격 조정 */
+	gap: 100px; /* 버튼 사이의 간격 조정 */
 }
 
 .mode-button {
@@ -51,8 +51,8 @@ main {
 	transition: background-color 0.3s;
 	text-decoration: none; /* 링크 기본 스타일 제거 */
 	text-align: center; /* 텍스트 중앙 정렬 */
-	width: 350px;
-	height: 400px;
+	width: 400px;
+	height: 450px;
 }
 
 .mode-button:hover {
@@ -87,7 +87,7 @@ main {
 <body>
 
 	<!-- 메뉴바 연결 -->
-	<%@ include file="common/header.jsp"%>
+	<%-- <%@ include file="common/header.jsp"%> --%>
 
 	<main>
     <div class="button-container">
@@ -103,7 +103,7 @@ main {
 	</main>
 
 	<!-- 푸터 연결 -->
-	<%@ include file="common/footer.jsp"%>
+	<%-- <%@ include file="common/footer.jsp"%> --%>
 
 </body>
 </html>

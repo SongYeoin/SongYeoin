@@ -8,11 +8,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.syi.project.model.Criteria;
 import com.syi.project.model.member.MemberVO;
 import com.syi.project.service.member.AdminService;
 
@@ -28,13 +30,13 @@ public class MemberAdminController {
 	@Autowired
 	private BCryptPasswordEncoder pwdEncoder;
 
-	// 로그인 페이지 이동
+	// 관리자 로그인 페이지 이동
 	@GetMapping("login")
 	public void loginGet() {
-		logger.info("로그인 페이지 이동");
+		logger.info("관리자 로그인 페이지 이동");
 	}
-
-	// 로그인
+	
+	// 관리자 로그인
 	@PostMapping("login")
 	public String loginPost(HttpServletRequest request, MemberVO requestMember, RedirectAttributes rttr)
 			throws Exception {
@@ -55,7 +57,7 @@ public class MemberAdminController {
 		}
 
 		// 미승인 회원
-		if ("N".equals(loginMember.getMemberCheckStatus())) {
+		if (!"Y".equals(loginMember.getMemberCheckStatus())) {
 			rttr.addFlashAttribute("result", 0);
 			return "redirect:/admin/login";
 		}
@@ -66,5 +68,16 @@ public class MemberAdminController {
 		session.setAttribute("loginMember", loginMember);
 		return "redirect:/admin/main";
 	}
+	
+	// 관리자 수강생 조회 페이지
+	@GetMapping("member/list")
+	public String memberListGet(Criteria cri, Model model) throws Exception {
+		logger.info("관리자 수강 조회 페이지 접속");
+		
+		return "redirect:/admin/member/list";
+	}
+	
+	
+
 
 }

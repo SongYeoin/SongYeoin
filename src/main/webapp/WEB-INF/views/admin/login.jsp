@@ -45,6 +45,7 @@ h2 {
     margin-bottom: 20px;
     font-size: 24px;
     color: #333;
+    text-align: center;
 }
 
 form input[type="text"], 
@@ -88,7 +89,7 @@ form input[type="submit"]:hover {
 	<div id="login-wrap">
 
 		<div class="login-wrapper">
-			<!-- <h2>Login</h2> -->
+			<h2>Login</h2>
 			<form action="${ pageContext.servletContext.contextPath }/admin/login" method="post" id="login-form">
 				<p>ID</p>
 				<input type="text" name="memberId" id="memberId" placeholder="아이디를 입력하세요"><br>
@@ -98,7 +99,7 @@ form input[type="submit"]:hover {
 				<input type="password" name="memberPwd" id="memberPwd" placeholder="비밀번호를 입력하세요"><br>
 				<span id="memberPwdError" class="error"></span>
 				
-				<input type="submit" id="loginBtn" value="Login"><br>
+				<input type="submit" id="loginBtn" value="로그인"><br>
 				<span id="loginError" class="error"></span>
 			</form>
 		</div>
