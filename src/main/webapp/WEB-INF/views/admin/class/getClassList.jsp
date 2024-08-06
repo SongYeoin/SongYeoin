@@ -243,7 +243,7 @@ th, td {
                         <th>담당자</th>
                         <th>개강일</th>
                         <th>종강일</th>
-                        <th>활성상태</th>
+                        <th>종강여부</th>
                         <th>...</th>
                     </tr>
                 </thead>
@@ -256,7 +256,7 @@ th, td {
                             <td><fmt:formatDate value="${classItem.startDate}" pattern="yyyy-MM-dd"/></td>
                             <td><fmt:formatDate value="${classItem.endDate}" pattern="yyyy-MM-dd"/></td>
                             <td class="${classItem.classStatus == 'Y' ? 'status-active' : 'status-inactive'}">
-                                <c:out value="${classItem.classStatus == 'Y' ? 'Active' : 'Inactive'}"/>
+                                <c:out value="${classItem.classStatus == 'Y' ? '진행중' : '종강'}"/>
                             </td>
                             <td>
                                 <div class="dropdown">

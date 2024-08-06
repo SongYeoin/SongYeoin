@@ -29,4 +29,9 @@ public class SyclassService {
 		return syclassMapper.getClassDetail(classNo);
 	}
 
+	/* 반 수정하기 */
+	public int updateClass(SyclassVO syclass) {
+		return syclassMapper.updateClass(syclass);
+	}
+
 }

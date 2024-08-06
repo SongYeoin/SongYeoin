@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.syi.project.model.syclass.SyclassVO;
@@ -64,6 +65,21 @@ public class SyclassController {
 		rttr.addFlashAttribute("enroll_result", result);
 		
 		return "redirect:/admin/class/enroll";
+	}
+	
+	/* 반 정보 수정하기 */
+	@PostMapping("/class/update")
+	@ResponseBody
+	public String classUpdatePOST(SyclassVO syclass, RedirectAttributes rttr) throws Exception{
+		log.info("반 수정하기 시작");
+		
+		try {
+            int updatedRows = syclassService.updateClass(syclass);
+            return updatedRows > 0 ? "success" : "fail";
+            
+        } catch (Exception e) {
+            return "fail";
+        }
 	}
 	
 

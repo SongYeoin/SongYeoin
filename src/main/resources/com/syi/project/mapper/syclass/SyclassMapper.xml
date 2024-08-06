@@ -33,5 +33,21 @@
     <select id="getClassDetail" resultMap="classResultMap">
     SELECT * FROM class WHERE class_no=#{classNo}
     </select>
+    
+    <!-- 반 수정 -->
+    <update id="updateClass" parameterType="com.syi.project.model.syclass.SyclassVO">
+    UPDATE class
+    SET CLASS_NAME = #{className},
+        DESCRIPTION = #{description},
+        MANAGER_NAME = #{managerName},
+        TEACHER_NAME = #{teacherName},
+        START_DATE = #{startDate},
+        END_DATE = #{endDate},
+        CLASSROOM_NAME = #{classroomName},
+        MODIFIED_DATE = SYSDATE,
+        CLASS_STATUS = #{classStatus}
+    WHERE CLASS_NO = #{classNo}
+    </update>
+   
 
 </mapper>

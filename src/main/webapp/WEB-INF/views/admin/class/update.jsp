@@ -66,7 +66,7 @@ main {
     font-weight: bold;
 }
 
-.form-group input, .form-group textarea {
+.form-group input, .form-group textarea, .form-group select {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
@@ -98,6 +98,15 @@ main {
 .form-group button#cancelButton:hover {
     background-color: #c82333;
 }
+
+.form-group button#backButton {
+    background-color: #dc3545;
+    color: white;
+}
+
+.form-group button#backButton:hover {
+    background-color: #c82333;
+}
 </style>
 </head>
 <body>
@@ -113,6 +122,7 @@ main {
 	    <div class="form-container">
 	        <h2>반 수정</h2>
 	        <form id="class-update-form">
+	        		<input type="hidden" id="classNo" name="classNo" value="${classDtail.classNo}">
 	            <div class="form-group">
 	                <label for="className">반 이름:</label>
 	                <input type="text" id="className" name="className" value="${classDtail.className}" disabled required>
@@ -134,16 +144,25 @@ main {
 	                <input type="text" id="classroomName" name="classroomName" value="${classDtail.classroomName}" disabled required>
 	            </div>
 	            <div class="form-group">
-	                <label for="startDate">개강일:</label>
-	                <input type="date" id="startDate" name="startDate" value="${classDtail.startDate}" disabled required>
-	            </div>
-	            <div class="form-group">
-	                <label for="endDate">종강일:</label>
-	                <input type="date" id="endDate" name="endDate" value="${classDtail.endDate}" disabled required>
-	            </div>
+                    <label for="startDate">개강일:</label>
+                    <input type="date" id="startDate" name="startDate" value="<fmt:formatDate value='${classDtail.startDate}' pattern='yyyy-MM-dd' />" disabled required>
+                </div>
+                <div class="form-group">
+                    <label for="endDate">종강일:</label>
+                    <input type="date" id="endDate" name="endDate" value="<fmt:formatDate value='${classDtail.endDate}' pattern='yyyy-MM-dd' />" disabled required>
+                </div>
+                <div class="form-group">
+                    <label for="classStatus">종강 여부:</label>
+                    <select id="classStatus" name="classStatus" disabled required>
+                        <option value="Y" ${classDtail.classStatus == 'Y' ? 'selected' : ''}>진행중</option>
+                        <option value="N" ${classDtail.classStatus == 'N' ? 'selected' : ''}>종강</option>
+                    </select>
+                </div>
 	            <div class="form-group">
 	                <button type="button" id="editButton">수정</button>
-	                <button type="button" id="cancelButton">취소</button>
+	                <button type="button" id="saveButton" style="display: none;">수정완료</button>
+	                <button type="button" id="backButton">목록</button>
+	                <button type="button" id="cancelButton" style="display: none;">취소</button>
 	            </div>
 	        </form>
 	    </div>
@@ -154,39 +173,52 @@ main {
 
 <script>
 $(document).ready(function() {
-	// 수정 버튼 클릭 시 입력 필드 활성화
-	$('#editButton').on('click', function() {
-		$('#class-update-form input, #class-update-form textarea').prop('disabled', false);
-		$('#editButton').text('수정완료');
-		$('#editButton').attr('id', 'saveButton');
-	});
+    // 수정 버튼 클릭 시 입력 필드 활성화
+    $('#editButton').on('click', function() {
+        $('#class-update-form input, #class-update-form textarea, #class-update-form select').prop('disabled', false);
+        $('#editButton').hide();
+        $('#saveButton').show();
+        $('#backButton').hide();
+        $('#cancelButton').show();
+    });
 
-	// 저장 버튼 클릭 시 AJAX로 수정 요청
-	$(document).on('click', '#saveButton', function() {
-		$.ajax({
-			url: '/admin/class/update',
-			type: 'POST',
-			data: $('#class-update-form').serialize(),
-			success: function(response) {
-				if (response === 'success') {
-					alert('수정이 성공적으로 완료되었습니다.');
-					$('#class-update-form input, #class-update-form textarea').prop('disabled', true);
-					$('#saveButton').text('수정');
-					$('#saveButton').attr('id', 'editButton');
-				} else {
-					alert('수정에 실패하였습니다. 다시 시도해 주세요.');
-				}
-			},
-			error: function() {
-				alert('서버 오류가 발생했습니다. 다시 시도해 주세요.');
-			}
-		});
-	});
+    // 저장 버튼 클릭 시 AJAX로 수정 요청
+    $('#saveButton').on('click', function() {
+        $.ajax({
+            url: '/admin/class/update',
+            type: 'POST',
+            data: $('#class-update-form').serialize(),
+            success: function(response) {
+                if (response === 'success') {
+                    alert('수정이 성공적으로 완료되었습니다.');
+                    $('#class-update-form input, #class-update-form textarea, #class-update-form select').prop('disabled', true);
+                    $('#saveButton').hide();
+                    $('#editButton').show();
+                    $('#backButton').show();
+                    $('#cancelButton').hide();
+                } else {
+                    alert('수정에 실패하였습니다. 다시 시도해 주세요.');
+                }
+            },
+            error: function() {
+                alert('서버 오류가 발생했습니다. 다시 시도해 주세요.');
+            }
+        });
+    });
 
-	// 취소 버튼 클릭 시 어드민 메인화면으로 이동
-	$('#cancelButton').on('click', function() {
-		location.href = "/admin/class/getClassList";
-	});
+    // 취소 버튼 클릭 시 상세 조회 화면으로 이동
+    $('#cancelButton').on('click', function() {
+    	$('#class-update-form input, #class-update-form textarea, #class-update-form select').prop('disabled', true);
+        $('#saveButton').hide();
+        $('#editButton').show();
+        $('#backButton').show();
+        $('#cancelButton').hide();
+    });
+    
+ 	// 목록 버튼 클릭 시 어드민 메인화면으로 이동
+    $('#backButton').on('click', function() {
+        location.href = "/admin/class/getClassList";
+    });
 });
 </script>
 
