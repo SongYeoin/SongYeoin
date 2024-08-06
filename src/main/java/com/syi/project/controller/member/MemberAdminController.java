@@ -1,5 +1,7 @@
 package com.syi.project.controller.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -74,7 +76,16 @@ public class MemberAdminController {
 	public String memberListGet(Criteria cri, Model model) throws Exception {
 		logger.info("관리자 수강 조회 페이지 접속");
 		
-		return "redirect:/admin/member/list";
+		List memberList = adminService.selectMemberList(cri);
+		model.addAttribute("memberList", memberList);
+		
+		// 페이지 이동 인터페이스 데이터
+		/*
+		 * int total = adminService.authorGetTotal(cri); PageDTO pageMaker = new
+		 * PageDTO(cri, total); model.addAttribute("pageMaker", pageMaker);
+		 */
+
+		return "admin/member/list";
 	}
 	
 	
