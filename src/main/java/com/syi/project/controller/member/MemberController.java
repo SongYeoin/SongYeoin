@@ -32,16 +32,16 @@ public class MemberController {
 	@Autowired
 	private BCryptPasswordEncoder pwdEncoder;
 
-	// 로그인 페이지 이동
+	// 수강생 로그인 페이지 이동
 	@GetMapping("login")
 	public void loginGet() {
-		logger.info("로그인 페이지 이동");
+		logger.info("수강생 로그인 페이지 이동");
 	}
 
-	// 회원가입 페이지 이동
+	// 수강생 회원가입 페이지 이동
 	@GetMapping("join")
 	public void joinGet() {
-		logger.info("회원가입 페이지 이동");
+		logger.info("수강생 회원가입 페이지 이동");
 	}
 
 	// 마이페이지 이동
@@ -51,7 +51,7 @@ public class MemberController {
 	}
 
 	// 아이디 중복 체크
-	@PostMapping("/member/check-id")
+	@PostMapping("check-id")
 	@ResponseBody
 	public String checkMemberIdPost(String memberId) {
 		System.out.println("memberId는 " + memberId);
@@ -65,7 +65,7 @@ public class MemberController {
 	}
 
 	// 이메일 중복 체크
-	@PostMapping("/member/check-email")
+	@PostMapping("check-email")
 	@ResponseBody
 	public String checkMemberEmailCheckPost(String memberEmail) {
 		int result = memberService.selectCountByMemberEmail(memberEmail);
@@ -101,7 +101,7 @@ public class MemberController {
 		return num;
 	}
 
-	// 회원가입
+	// 수강생 회원가입
 	@PostMapping("join")
 	public String joinPost(MemberVO requestMember) {
 		String rawPwd = requestMember.getMemberPwd();
@@ -112,13 +112,13 @@ public class MemberController {
 		return "redirect:/";
 	}
 
-	// 로그인
+	// 수강생 로그인
 	@PostMapping("login")
 	public String loginPost(HttpServletRequest request, MemberVO requestMember, RedirectAttributes rttr)
 			throws Exception {
-
+		
 		MemberVO loginMember = memberService.selectLoginMember(requestMember);
-
+		
 		// 사용자 존재하지 않음
 		if (loginMember == null) {
 			rttr.addFlashAttribute("result", 1);
@@ -132,7 +132,7 @@ public class MemberController {
 		}
 
 		// 미승인 회원
-		if ("N".equals(loginMember.getMemberCheckStatus())) {
+		if (!"Y".equals(loginMember.getMemberCheckStatus())) {
 			rttr.addFlashAttribute("result", 0);
 			return "redirect:/member/login";
 		}
