@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>송파여성인력센터 회원관리</title>
+<title>송파여성인력센터</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
@@ -70,8 +70,18 @@ table th {
 	background-color: #f2f2f2;
 }
 
+.approval-status {
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.approval-status:hover {
+	background-color: #e0e0e0;
+}
+
 .search_wrap {
 	margin-top: 20px;
+	text-align: center; 
 }
 
 .search_input input[type=text], .search_input button {
@@ -91,6 +101,37 @@ table th {
 
 .search_input button:hover {
 	background-color: #0056b3;
+}
+
+.pageMaker_wrap{
+	text-align: center;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+.pageMaker_wrap a{
+	color : black;
+}
+.pageMaker{
+    list-style: none;
+    display: inline-block;
+}	
+.pageMaker_btn {
+    float: left;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 20px;
+}
+.next, .prev {
+    border: 1px solid #ccc;
+    padding: 0 10px;
+}
+.next a, .prev a {
+    color: #ccc;
+}
+.active{							/* 현재 페이지 버튼 */
+	border : 2px solid black;
+	font-weight:400;
 }
 </style>
 </head>
@@ -116,36 +157,68 @@ table th {
 						<th>승인</th>
 					</tr>
 					<c:forEach items="${ memberList }" var="member">
-						<tr> 
-						<!-- <tr onclick="showMemberDeatil(${member.memberNo})"> -->
+						<tr <%-- onclick="showMemberDetail(${member.memberNo})" --%>>
 							<td>${ member.memberNo }</td>
 							<td>${ member.memberName }</td>
 							<td>${ member.memberPhone }</td>
 							<td>${ member.memberEnrollDate }</td>
-							<td onclick="changeApprovalStatus(${member.memberNo}, '${member.memberCheckStatus}')">
-								<c:choose>
+							<td class="approval-status"
+								onclick="changeApprovalStatus(${member.memberNo})"><c:choose>
 									<c:when test="${member.memberCheckStatus == 'W'}">대기</c:when>
-                                	<c:when test="${member.memberCheckStatus == 'Y'}">승인</c:when>
-                                	<c:when test="${member.memberCheckStatus == 'N'}">미승인</c:when>
-								</c:choose>
-							</td>
+									<c:when test="${member.memberCheckStatus == 'Y'}">승인</c:when>
+									<c:when test="${member.memberCheckStatus == 'N'}">미승인</c:when>
+								</c:choose></td>
 						</tr>
-						
+
 					</c:forEach>
 				</table>
-			</div>
-			
-			<!-- 검색 영역 -->
-			<div class="search_wrap">
-				<form id="searchForm" action="/admin/member/list" method="get">
-					<div class="search_input">
-						<input type="text" name="keyword" value='<c:out value="${pageMaker.cri.keyword}"></c:out>'>
-						<input type="hidden" name="pageNum" value='<c:out value="${pageMaker.cri.pageNum }"></c:out>'>
-						<input type="hidden" name="amount" value='${pageMaker.cri.amount}'>
-						<button class='btn search_btn'>검 색</button>
-					</div>
+				<!-- 검색 영역 -->
+				<div class="search_wrap">
+					<form id="searchForm" action="/admin/member/list" method="get">
+						<div class="search_input">
+							<input type="text" name="keyword"
+								value='<c:out value="${pageMaker.cri.keyword}"></c:out>'>
+							<input type="hidden" name="pageNum"
+								value='<c:out value="${pageMaker.cri.pageNum }"></c:out>'>
+							<input type="hidden" name="amount"
+								value='${pageMaker.cri.amount}'>
+							<button class='btn search_btn'>검 색</button>
+						</div>
+					</form>
+				</div>
+
+				<!-- 페이지 이동 인터페이스 영역 -->
+				<div class="pageMaker_wrap">
+
+					<ul class="pageMaker">
+
+						<!-- 이전 버튼 -->
+						<c:if test="${pageMaker.prev}">
+							<li class="pageMaker_btn prev"><a href="${pageMaker.pageStart - 1}">이전</a></li>
+						</c:if>
+
+						<!-- 페이지 번호 -->
+						<c:forEach begin="${pageMaker.pageStart}" end="${pageMaker.pageEnd}" var="num">
+							<li class="pageMaker_btn ${pageMaker.cri.pageNum == num ? "active":""}"><a href="${num}">${num}</a>
+							</li>
+						</c:forEach>
+
+						<!-- 다음 버튼 -->
+						<c:if test="${pageMaker.next}">
+							<li class="pageMaker_btn next"><a href="${pageMaker.pageEnd + 1 }">다음</a></li>
+						</c:if>
+
+					</ul>
+
+				</div>
+				<form id="moveForm" action="/admin/member/list" method="get">
+					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+					<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+					<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
 				</form>
 			</div>
+
+
 
 		</div>
 	</main>
@@ -156,16 +229,22 @@ table th {
 </body>
 
 <script>
+let moveForm = $('#moveForm');
+//페이지 이동 버튼
+$(".pageMaker_btn a").on("click", function(e){
+    e.preventDefault();
+    let pageNum = $(this).attr("href");
+    moveForm.find("input[name='pageNum']").val(pageNum);
+    moveForm.submit();
+});
 
-function changeApprovalStatus(memberNo, memberCheckStatus) {
+function changeApprovalStatus(memberNo) {
 	if (window.confirm("승인 하시겠습니까?")) {
 		 $.ajax({
 	            url: "${ pageContext.servletContext.contextPath }/admin/status-y",
 	            type: "post",
-	            data: {memberNo: memberNo,
-	            	memberCheckStatus: memberCheckStatus},
+	            data: {memberNo: memberNo},
 	            success: function(data) {
-	            	console.log(data.trim());
 	                if (data.trim() === 'success') {
 	                    alert("승인되었습니다.");
 	                    location.reload();
@@ -174,7 +253,6 @@ function changeApprovalStatus(memberNo, memberCheckStatus) {
 	                }
 	            },
 	            error: function(error) {
-	                console.error("승인 처리 중 오류 발생:", error);
 	                alert("승인 처리 중 오류가 발생하였습니다.");
 	            }
 	        });
@@ -182,10 +260,8 @@ function changeApprovalStatus(memberNo, memberCheckStatus) {
 		  $.ajax({
 	            url: "${ pageContext.servletContext.contextPath }/admin/status-n",
 	            type: "post",
-	            data: {memberNo: memberNo,
-	            	memberCheckStatus: memberCheckStatus},
+	            data: {memberNo: memberNo},
 	            success: function(data) {
-	            	console.log(data.trim());
 	                if (data.trim() === 'success') {
 	                    alert("미승인되었습니다.");
 	                    location.reload();
@@ -194,7 +270,6 @@ function changeApprovalStatus(memberNo, memberCheckStatus) {
 	                }
 	            },
 	            error: function(error) {
-	                console.error("미승인 처리 중 오류 발생:", error);
 	                alert("미승인 처리 중 오류가 발생하였습니다.");
 	            }
 	        });
@@ -202,8 +277,8 @@ function changeApprovalStatus(memberNo, memberCheckStatus) {
 	  }
 }
 
-
-
-
+function showMemberDetail(memberNo) {
+    window.location.href = '${pageContext.servletContext.contextPath}/admin/member/detail?memberNo=' + memberNo;
+}
 </script>
 </html>

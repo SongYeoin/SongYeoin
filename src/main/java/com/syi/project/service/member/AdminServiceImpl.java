@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.syi.project.mapper.member.AdminMapper;
 import com.syi.project.model.Criteria;
+import com.syi.project.model.EnrollVO;
 import com.syi.project.model.member.MemberVO;
+import com.syi.project.model.syclass.SyclassVO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -26,6 +28,12 @@ public class AdminServiceImpl implements AdminService {
 	public List<MemberVO> selectMemberList(Criteria cri) throws Exception {
 		return adminMapper.selectMemberList(cri);
 	}
+	
+	// 회원 총 수
+	@Override
+	public int selectTotalCount(Criteria cri) {
+		return adminMapper.selectTotalCount(cri);
+	}
 
 	// 승인 처리
 	@Override
@@ -38,4 +46,24 @@ public class AdminServiceImpl implements AdminService {
 	public int updateStatusN(int memberNo) {
 		return adminMapper.updateStatusN(memberNo);
 	}
+
+	// 회원 상세 조회
+	@Override
+	public MemberVO selectMemberDetail(int memberNo) {
+		return adminMapper.selectMemberDetail(memberNo);
+	}
+
+	// 반 조회
+	@Override
+	public List<SyclassVO> selectClassList() {
+		return adminMapper.selectClassList();
+	}
+
+	// 수강 신청
+	@Override
+	public int insertEnroll(EnrollVO enroll) {
+		return adminMapper.insertEnroll(enroll);
+	}
+
+	
 }
