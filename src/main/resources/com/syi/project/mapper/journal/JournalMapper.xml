@@ -5,19 +5,28 @@
 <mapper namespace="com.syi.project.mapper.journal.JournalMapper">
 
 	<!-- 일지 등록 -->
-	<insert id="journalEnroll" parameterType="com.syi.project.model.journal.JournalVO">
-  	
-  		insert into journal(journal_date, journal_modify, journal_title) 
-  		values(#{journalDate}, #{journalModify}, #{journalTitle})
-
-  	</insert>	
-
-	
-	<!-- 파일 정보 저장 -->
-    <insert id="saveJournalFile" parameterType="com.syi.project.model.journal.JournalFileVO">
-        INSERT INTO journal_file (file_original_name, file_saved_name, file_type, file_size, file_path, file_reg_date, journal_no)
-        VALUES (#{fileOriginalName}, #{fileSavedName}, #{fileType}, #{fileSize}, #{filePath}, #{fileRegDate}, #{journalNo})
+	<!-- Insert a new Journal record -->
+    <insert id="insertJournal" parameterType="com.example.model.Journal">
+        INSERT INTO JOURNAL (JOURNAL_DATE, JOURNAL_TITLE)
+        VALUES (SYSDATE, #{journalTitle})
     </insert>
 
+    <!-- Insert a new JournalFile record -->
+    <insert id="insertJournalFile" parameterType="com.example.model.JournalFile">
+        INSERT INTO JOURNAL_FILE (FILE_ORIGINAL_NAME, FILE_SAVED_NAME, FILE_TYPE, FILE_SIZE, FILE_PATH, FILE_REG_DATE, JOURNAL_NO)
+        VALUES (#{fileOriginalName}, #{fileSavedName}, #{fileType}, #{fileSize}, #{filePath}, SYSDATE, #{journalNo})
+    </insert>
+
+    <!-- Select a Journal record by ID -->
+    <select id="selectJournalById" parameterType="Integer" resultType="com.example.model.Journal">
+        SELECT * FROM JOURNAL
+        WHERE JOURNAL_NO = #{journalNo}
+    </select>
+
+    <!-- Select a JournalFile record by ID -->
+    <select id="selectJournalFileById" parameterType="Integer" resultType="com.example.model.JournalFile">
+        SELECT * FROM JOURNAL_FILE
+        WHERE FILE_NO = #{fileNo}
+    </select>
 
 </mapper>

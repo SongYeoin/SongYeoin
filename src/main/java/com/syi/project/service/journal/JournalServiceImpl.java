@@ -1,12 +1,14 @@
 package com.syi.project.service.journal;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.syi.project.mapper.journal.JournalFileMapper;
 import com.syi.project.mapper.journal.JournalMapper;
 import com.syi.project.model.journal.JournalFileVO;
 import com.syi.project.model.journal.JournalVO;
@@ -17,28 +19,27 @@ public class JournalServiceImpl implements JournalService {
 	@Autowired
 	private JournalMapper journalMapper;
 
-	@Autowired
-	private JournalFileMapper journalFileMapper;
-
-	@Override
 	@Transactional
-	public void journalEnroll(JournalVO journal, List<JournalFileVO> journalFile) throws Exception {
+	@Override
+	public void journalEnroll(JournalVO journal, List<JournalFileVO> files) throws Exception {
 		journalMapper.journalEnroll(journal);
-
-		// Insert associated files
-		for (JournalFileVO file : journalFile) {
-			file.setJournalNo(journal.getJournalNo());
-			journalFileMapper.journalFileEnroll(file);
-		}
-
+        for (JournalFileVO file : files) {
+            file.setJournalNo(journal.getJournalNo());
+            journalMapper.journalFileEnroll(file);
+        }
+		
 	}
 
 	@Override
-	@Transactional
-	public void saveJournalFiles(List<JournalFileVO> journalFiles) throws Exception {
-		for (JournalFileVO file : journalFiles) {
-			journalFileMapper.journalFileEnroll(file);
-		}
+	public JournalVO getJournalById(Integer journalNo) {
+		return journalMapper.selectJournalById(journalNo);
 	}
+
+	@Override
+	public JournalFileVO getJournalFileById(Integer fileNo) {
+		return journalMapper.selectJournalFileById(fileNo);
+	}
+
+	
 
 }
