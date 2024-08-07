@@ -294,11 +294,11 @@ $(document).ready(function() {
                         <div class="time-group">
                             <div>
                                 <label for="startTime` + groupCount + `_1">시작 시간</label>
-                                <input type="time" id="startTime` + groupCount + `_1" name="startTime` + groupCount + `_1" required>
+                                <input type="time" id="startTime` + groupCount + `_1" name="periods[` + (groupCount - 1) + `][startTime]" required>
                             </div>
                             <div>
                                 <label for="endTime` + groupCount + `_1">종료 시간</label>
-                                <input type="time" id="endTime` + groupCount + `_1" name="endTime` + groupCount + `_1" required>
+                                <input type="time" id="endTime` + groupCount + `_1" name="periods[` + (groupCount - 1) + `][endTime]" required>
                             </div>
                         </div>
                         <button type="button" class="remove-period-btn">X</button>
@@ -330,11 +330,11 @@ $(document).ready(function() {
                 <div class="time-group">
                     <div>
                         <label for="startTime` + groupId + `_` + nextPeriodId + `">시작 시간</label>
-                        <input type="time" id="startTime` + groupId + `_` + nextPeriodId + `" name="startTime` + groupId + `_` + nextPeriodId + `" required>
+                        <input type="time" id="startTime` + groupId + `_` + nextPeriodId + `" name="periods[` + (groupId - 1) + `][startTime]" required>
                     </div>
                     <div>
                         <label for="endTime` + groupId + `_` + nextPeriodId + `">종료 시간</label>
-                        <input type="time" id="endTime` + groupId + `_` + nextPeriodId + `" name="endTime` + groupId + `_` + nextPeriodId + `" required>
+                        <input type="time" id="endTime` + groupId + `_` + nextPeriodId + `" name="periods[` + (groupId - 1) + `][endTime]" required>
                     </div>
                 </div>
                 <button type="button" class="remove-period-btn">X</button>

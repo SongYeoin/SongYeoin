@@ -1,9 +1,5 @@
 package com.syi.project.model.period;
 
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import lombok.Data;
 
 @Data
@@ -17,10 +13,8 @@ public class PeriodVO {
 	
 	private String periodName;
 	
-	@DateTimeFormat(pattern = "HH:mm")
-	private Date startTime;
+	private String startTime;
 	
-	@DateTimeFormat(pattern = "HH:mm")
-	private Date endTime;
+	private String endTime;
 	
 }
