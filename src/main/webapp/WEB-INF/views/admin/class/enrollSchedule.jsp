@@ -359,9 +359,7 @@ $(document).ready(function() {
     });
 
     $('#schedule-form').on('submit', function() {
-        var selectedDaysGroups = [];
         var periods = [];
-
         $('.day-group').each(function() {
             var groupId = $(this).data('group-id');
             var selectedDays = [];
@@ -372,13 +370,13 @@ $(document).ready(function() {
                 alert('요일 그룹에 요일을 하나 이상 선택해주세요.');
                 return false;
             }
-            selectedDaysGroups.push(selectedDays.join(','));
+            var daysOfWeek = selectedDays.join(',');
 
             $('#periods' + groupId + ' .form-group.period').each(function() {
                 var periodId = $(this).data('period-id');
                 var period = {
-                    dayOfWeek: selectedDays.join(','), 
-                    periodName: periodId + '교시',
+                    dayOfWeek: daysOfWeek,
+                    periodName: $(this).find('label:first').text(),
                     startTime: $('#startTime' + groupId + '_' + periodId).val(),
                     endTime: $('#endTime' + groupId + '_' + periodId).val()
                 };
@@ -386,11 +384,28 @@ $(document).ready(function() {
             });
         });
 
-        $('<input>').attr({
-            type: 'hidden',
-            name: 'periods',
-            value: JSON.stringify(periods)
-        }).appendTo('#schedule-form');
+        periods.forEach(function(period, index) {
+            $('<input>').attr({
+                type: 'hidden',
+                name: 'periods[' + index + '].dayOfWeek',
+                value: period.dayOfWeek
+            }).appendTo('#schedule-form');
+            $('<input>').attr({
+                type: 'hidden',
+                name: 'periods[' + index + '].periodName',
+                value: period.periodName
+            }).appendTo('#schedule-form');
+            $('<input>').attr({
+                type: 'hidden',
+                name: 'periods[' + index + '].startTime',
+                value: period.startTime
+            }).appendTo('#schedule-form');
+            $('<input>').attr({
+                type: 'hidden',
+                name: 'periods[' + index + '].endTime',
+                value: period.endTime
+            }).appendTo('#schedule-form');
+        });
 
         return true;
     });
@@ -400,7 +415,7 @@ $(document).ready(function() {
             var groupId = $(this).closest('.day-group').data('group-id');
             updatePeriodLabels(groupId);
         }
-    });  
+    });  // Make initial periods sortable
     updateRemoveButtons();
 });
 </script>

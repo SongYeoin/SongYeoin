@@ -83,13 +83,8 @@
         <div class="menu-item">
             <div class="menu-title">
                 <div>
-                    <a><i class="fas fa-user"></i>출석</a>
+                    <a><i class="fas fa-user"></i>출석 관리</a>
                 </div>
-                <i class="fas fa-chevron-down arrow"></i>
-            </div>
-            <div class="submenu">
-                <div class="submenu-item"><a><i class="fas fa-users"></i>수강생 관리</a></div>
-                <div class="submenu-item"><a><i class="fas fa-user-tie"></i>직원 관리</a></div>
             </div>
         </div>
         <div class="menu-item">
@@ -109,7 +104,7 @@
         </div>
         <div class="menu-item">
             <div class="menu-title">
-                <a><i class="fas fa-cog"></i>무엇을 또 넣을까</a>
+                <a><i class="fas fa-cog"></i>시간표 관리</a>
             </div>
         </div>
     </div>

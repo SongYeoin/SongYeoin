@@ -16,6 +16,7 @@
 		<result property="enrollDate" column="enroll_date"/>
 		<result property="modifiedDate" column="modified_date"/>
 		<result property="classStatus" column="class_status"/>
+		<result property="isDeleted" column="is_deleted"/>
 	</resultMap>
 
     <!-- 반 등록 -->
@@ -45,7 +46,8 @@
         END_DATE = #{endDate},
         CLASSROOM_NAME = #{classroomName},
         MODIFIED_DATE = SYSDATE,
-        CLASS_STATUS = #{classStatus}
+        CLASS_STATUS = #{classStatus},
+        IS_DELETED = #{isDeleted}
     WHERE CLASS_NO = #{classNo}
     </update>
    
