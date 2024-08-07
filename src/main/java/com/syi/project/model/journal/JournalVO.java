@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class JournalVO {
 
-	private Integer journalNo; // 일지 번호
+	private int journalNo; // 일지 번호
 
 	private Date journalDate; // 일지 작성일자
 

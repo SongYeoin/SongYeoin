@@ -15,13 +15,6 @@ public interface JournalMapper {
 	// 일지 등록
 	public void journalEnroll(JournalVO journal);
 	
-	// 파일 정보 저장
-    public void journalFileEnroll(JournalFileVO journalFile);
-    
-    JournalVO selectJournalById(@Param("journalNo") Integer journalNo);
-
-    JournalFileVO selectJournalFileById(@Param("fileNo") Integer fileNo);
-    
     
 	// 일지 목록 List<>
 	public List<JournalVO> journalList(Criteria cri);
