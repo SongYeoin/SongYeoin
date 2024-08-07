@@ -2,6 +2,8 @@ package com.syi.project.model.club;
 
 import java.sql.Date;
 
+import com.syi.project.model.EnrollVO;
+
 import lombok.Data;
 
 @Data
@@ -14,6 +16,6 @@ public class ClubVO {
 	private Date regDate;	//등록날짜
 	private String checkStatus;	//'Y', 'N', 'W' 승인
 	private String checkCmt;	//승인메시지
-	private int enrollNo;	//수강코드번호
+	private EnrollVO enroll;	//수강코드번호
 	
 }
