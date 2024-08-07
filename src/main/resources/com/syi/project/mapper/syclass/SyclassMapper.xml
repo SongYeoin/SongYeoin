@@ -46,8 +46,7 @@
         END_DATE = #{endDate},
         CLASSROOM_NAME = #{classroomName},
         MODIFIED_DATE = SYSDATE,
-        CLASS_STATUS = #{classStatus},
-        IS_DELETED = #{isDeleted}
+        CLASS_STATUS = #{classStatus}
     WHERE CLASS_NO = #{classNo}
     </update>
    
