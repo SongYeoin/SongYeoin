@@ -26,4 +26,16 @@ public class AdminServiceImpl implements AdminService {
 	public List<MemberVO> selectMemberList(Criteria cri) throws Exception {
 		return adminMapper.selectMemberList(cri);
 	}
+
+	// 승인 처리
+	@Override
+	public int updateStatusY(int memberNo) {
+		return adminMapper.updateStatusY(memberNo);
+	}
+
+	// 미승인 처리
+	@Override
+	public int updateStatusN(int memberNo) {
+		return adminMapper.updateStatusN(memberNo);
+	}
 }

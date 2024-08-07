@@ -15,4 +15,10 @@ public interface AdminMapper {
 	
 	// 수강생 
 	int selectTotalCount();
+	
+	// 승인 처리
+	int updateStatusY(int memberNo);
+	
+	// 미승인 처리
+	int updateStatusN(int memberNo);
 }

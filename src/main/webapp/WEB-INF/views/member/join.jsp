@@ -165,6 +165,10 @@ p a:hover {
 	
 	<script>
 		$(document).ready(function() {
+			var enrollResult = '${enroll_result}';
+			if(enrollResult === 'fail') {
+				alert("회원가입에 실패하였습니다.");
+			}
 			
 			// 주소 검색 버튼 클릭
 			 $("#findAddress").click(function() {

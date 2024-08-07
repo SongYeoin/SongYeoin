@@ -12,6 +12,14 @@ public interface AdminService {
 	
 	// 수강생 리스트 조회
 	List<MemberVO> selectMemberList(Criteria cri) throws Exception;
+	
+	// 수강생 총 수
+	
+	// 승인 처리
+	int updateStatusY(int memberNo);
+		
+	// 미승인 처리
+	int updateStatusN(int memberNo);
 
 
 }

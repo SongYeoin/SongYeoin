@@ -46,4 +46,20 @@
   		AND MEMBER_STATUS = 'Y'
   </select>
   
+  <!-- 승인처리 -->
+  <update id="updateStatusY" parameterType="com.syi.project.model.member.MemberVO">
+		UPDATE 
+			MEMBER
+		SET MEMBER_CHECK_STATUS = 'Y'
+		WHERE MEMBER_NO = #{ memberNo }
+  </update>
+  
+  <!-- 미승인처리 -->
+  <update id="updateStatusN" parameterType="com.syi.project.model.member.MemberVO">
+		UPDATE 
+			MEMBER
+		SET MEMBER_CHECK_STATUS = 'N'
+		WHERE MEMBER_NO = #{ memberNo }
+  </update>
+  
   </mapper>

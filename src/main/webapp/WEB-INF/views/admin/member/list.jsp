@@ -12,6 +12,7 @@
 <style>
 
 /* CSS Reset */
+
 * {
 	margin: 0;
 	padding: 0;
@@ -23,7 +24,6 @@ html, body {
 }
 
 body {
-	font-family: Arial, sans-serif;
 	display: flex;
 	flex-direction: column;
 	/* min-height: 100vh; */
@@ -32,16 +32,65 @@ body {
 main {
 	flex: 1;
 	margin-left: 250px;
+	padding: 20px;
 	padding-top: 90px;
 	overflow-y: auto;
-	top: 120px;
-	left: 250px;
-	/* background-color: yellow; */
 }
 
-.box{
-	height: 100%;
+.memberList-wrapper {
+	margin: 20px auto;
+	padding: 20px;
+	background-color: #f9fafc;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	max-width: 1200px;
+	border-radius: 10px;
+}
 
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	text-align: center;
+}
+
+table th, table td {
+	padding: 10px;
+	text-align: center;
+	border-bottom: 1px solid #ddd;
+}
+
+table th {
+	background-color: #f2f2f2;
+}
+
+.search_wrap {
+	margin-top: 20px;
+}
+
+.search_input input[type=text], .search_input button {
+	margin: 0 5px;
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 14px;
+}
+
+.search_input button {
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+}
+
+.search_input button:hover {
+	background-color: #0056b3;
 }
 </style>
 </head>
@@ -56,9 +105,8 @@ main {
    <main>
         <!-- Main content -->
         <div class="box">
-        <!-- <h2>수강생 관리</h2> -->
 			<div class="memberList-wrapper">
-				<h2 align="center">수강생 관리</h2>
+				<h2 align="center">회원 목록</h2>
 				<table>
 					<tr>
 						<th>번호</th>
@@ -67,14 +115,22 @@ main {
 						<th>가입일</th>
 						<th>승인</th>
 					</tr>
-					<!-- (LV.2 > ST.1) 1. EL, JSTL 활용해서 목록 현출되게 하기  -->
 					<c:forEach items="${ memberList }" var="member">
-						<tr onclick="showMemberDeatil(${member.memberNo})">
+						<tr> 
+						<!-- <tr onclick="showMemberDeatil(${member.memberNo})"> -->
+							<td>${ member.memberNo }</td>
 							<td>${ member.memberName }</td>
-							<td width=500>${ member.memberPhone }</td>
+							<td>${ member.memberPhone }</td>
 							<td>${ member.memberEnrollDate }</td>
-							<td>${ member.memberCheckStatus }</td>
+							<td onclick="changeApprovalStatus(${member.memberNo}, '${member.memberCheckStatus}')">
+								<c:choose>
+									<c:when test="${member.memberCheckStatus == 'W'}">대기</c:when>
+                                	<c:when test="${member.memberCheckStatus == 'Y'}">승인</c:when>
+                                	<c:when test="${member.memberCheckStatus == 'N'}">미승인</c:when>
+								</c:choose>
+							</td>
 						</tr>
+						
 					</c:forEach>
 				</table>
 			</div>
@@ -98,4 +154,56 @@ main {
 	<%@ include file="../../common/footer.jsp"%>
 
 </body>
+
+<script>
+
+function changeApprovalStatus(memberNo, memberCheckStatus) {
+	if (window.confirm("승인 하시겠습니까?")) {
+		 $.ajax({
+	            url: "${ pageContext.servletContext.contextPath }/admin/status-y",
+	            type: "post",
+	            data: {memberNo: memberNo,
+	            	memberCheckStatus: memberCheckStatus},
+	            success: function(data) {
+	            	console.log(data.trim());
+	                if (data.trim() === 'success') {
+	                    alert("승인되었습니다.");
+	                    location.reload();
+	                } else {
+	                    alert("승인 처리를 실패했습니다.");
+	                }
+	            },
+	            error: function(error) {
+	                console.error("승인 처리 중 오류 발생:", error);
+	                alert("승인 처리 중 오류가 발생하였습니다.");
+	            }
+	        });
+	  } else {
+		  $.ajax({
+	            url: "${ pageContext.servletContext.contextPath }/admin/status-n",
+	            type: "post",
+	            data: {memberNo: memberNo,
+	            	memberCheckStatus: memberCheckStatus},
+	            success: function(data) {
+	            	console.log(data.trim());
+	                if (data.trim() === 'success') {
+	                    alert("미승인되었습니다.");
+	                    location.reload();
+	                } else {
+	                    alert("미승인 처리를 실패했습니다.");
+	                }
+	            },
+	            error: function(error) {
+	                console.error("미승인 처리 중 오류 발생:", error);
+	                alert("미승인 처리 중 오류가 발생하였습니다.");
+	            }
+	        });
+	    
+	  }
+}
+
+
+
+
+</script>
 </html>

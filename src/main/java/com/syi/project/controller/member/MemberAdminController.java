@@ -88,6 +88,34 @@ public class MemberAdminController {
 		return "admin/member/list";
 	}
 	
+	// 승인 처리
+	@PostMapping("status-y")
+	public String memberChangeStatusYPost(int memberNo) {
+		logger.info("승인 처리 중 for memberNo: {}", memberNo);
+	    try {
+	        int result = adminService.updateStatusY(memberNo);
+	        logger.info("승인 처리의 result: {}", result);
+	        return result > 0 ? "success" : "fail";
+	    } catch (Exception e) {
+	        logger.error("Error processing approval for memberNo: {}", memberNo, e);
+	        return "error";
+	    }
+	}
+	
+	// 미승인 처리
+	@PostMapping("status-n")
+	public String memberChangeStatusNPost(int memberNo) {
+		logger.info("미승인 처리 중 for memberNo: {}", memberNo);
+        try {
+            int result = adminService.updateStatusN(memberNo);
+            logger.info("미승인 처리의 result: {}", result);
+            return result > 0 ? "success" : "fail";
+        } catch (Exception e) {
+            logger.error("Error processing disapproval for memberNo: {}", memberNo, e);
+            return "error";
+        }
+	}
+	
 	
 
 
