@@ -54,9 +54,7 @@ public class MemberController {
 	@PostMapping("check-id")
 	@ResponseBody
 	public String checkMemberIdPost(String memberId) {
-		System.out.println("memberId는 " + memberId);
 		int result = memberService.selectCountByMemberId(memberId);
-		System.out.println("result는 " + result);
 		if (result != 0) {
 			return "fail";
 		} else {
@@ -103,13 +101,20 @@ public class MemberController {
 
 	// 수강생 회원가입
 	@PostMapping("join")
-	public String joinPost(MemberVO requestMember) {
+	public String joinPost(MemberVO requestMember, RedirectAttributes rttr) {
+		System.out.println("회원가입 진행 중");
 		String rawPwd = requestMember.getMemberPwd();
 		String encodePwd = pwdEncoder.encode(rawPwd);
 		requestMember.setMemberPwd(encodePwd);
 
-		memberService.insertMember(requestMember);
-		return "redirect:/";
+		int result = memberService.insertMember(requestMember);
+		if(result != 0) {
+	        rttr.addFlashAttribute("enroll_result", "success");
+			return "redirect:/member/login";
+		} else {
+	        rttr.addFlashAttribute("enroll_result", "fail");
+			return "redirect:/member/join";
+		}
 	}
 
 	// 수강생 로그인
@@ -144,22 +149,56 @@ public class MemberController {
 		return "redirect:/member/main";
 	}
 
-	// 마이페이지
+	// 회원정보 수정
 	@PostMapping("mypage")
-	public String mypageMember() {
+	public String mypageMember(MemberVO updateMember, RedirectAttributes rttr, HttpSession session) {
+		MemberVO loginMember = (MemberVO) session.getAttribute("loginMember");
+		
+		if(!updateMember.getMemberPwd().isEmpty()) {
+			String rawPwd = updateMember.getMemberPwd();
+			String encodePwd = pwdEncoder.encode(rawPwd);
+			updateMember.setMemberPwd(encodePwd);
+		} else {
+			updateMember.setMemberPwd(loginMember.getMemberPwd());
+		}
+		updateMember.setMemberPhone(loginMember.getMemberPhone());
+		updateMember.setMemberEmail(loginMember.getMemberEmail());
+		updateMember.setMemberAddress(loginMember.getMemberAddress());
+		updateMember.setMemberStreetAddress(loginMember.getMemberStreetAddress());
+		updateMember.setMemberDetailAddress(loginMember.getMemberDetailAddress());
+		updateMember.setMemberNickname(loginMember.getMemberNickname());
+		
+		int result = memberService.updateMember(updateMember);
+		if(result != 0) {
+			rttr.addFlashAttribute("update_result", "success");
+			session.setAttribute("loginMemqqqqqqqqqqqqqqqqqqqqqber", loginMember);
+		} else {
+			rttr.addFlashAttribute("update_result", "fail");
+		}
 		return "redirect:/member/mypage";
 	}
 
 	// 로그아웃
-	@PostMapping("logout")
-	public String logoutMember(HttpSession session) {
+	@GetMapping("logout")
+	public String logoutMember(HttpSession session, RedirectAttributes rttr) {
+		System.out.println("로그아웃 중");
 		session.invalidate();
+		rttr.addFlashAttribute("logout_result", "success");
 		return "redirect:/";
 	}
 
 	// 회원탈퇴
 	@PostMapping("delete")
-	public void deleteMember() {
+	public String deleteMember(HttpSession session, RedirectAttributes rttr) {
+		MemberVO loginMember = (MemberVO) session.getAttribute("loginMember");
+		int result = memberService.deleteMember(loginMember);
+		if(result != 0) {
+			session.invalidate();
+			rttr.addFlashAttribute("delete_result", "success");
+			return "redirect:/";
+		} else {
+			rttr.addFlashAttribute("delete_result", "fail");
+			return "redirect:/member/mypage";
+		}
 	}
-
 }
