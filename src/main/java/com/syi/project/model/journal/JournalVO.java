@@ -1,7 +1,6 @@
 package com.syi.project.model.journal;
 
 import java.util.Date;
-import java.util.List;
 
 import lombok.Data;
 
@@ -15,5 +14,7 @@ public class JournalVO {
 	private Date journalModify; // 일지 수정일자
 	
 	private String journalTitle; // 일지 제목
+	
+	private String fileName; // 파일 이름
 	
 }

@@ -3,10 +3,8 @@ package com.syi.project.mapper.journal;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import com.syi.project.model.Criteria;
-import com.syi.project.model.journal.JournalFileVO;
 import com.syi.project.model.journal.JournalVO;
 
 @Mapper

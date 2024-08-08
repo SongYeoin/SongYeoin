@@ -6,25 +6,10 @@
 <!-- MyBatis 매퍼 XML 파일의 시작 -->
 <mapper namespace="com.syi.project.mapper.journal.JournalMapper">
 
-    <!-- ResultMap : ResultMap은 데이터베이스 쿼리의 결과를 Java 객체로 매핑 / id: 매핑할 Java 객체의 primary key / result: 일반적인 컬럼-속성 매핑을 정의 -->
-    <resultMap id="journalResultMap" type="com.syi.project.model.journal.JournalVO">
-        <id property="journalNo" column="JOURNAL_NO"/>
-        <result property="journalDate" column="JOURNAL_DATE"/>
-        <result property="journalModify" column="JOURNAL_MODIFY"/>
-        <result property="journalTitle" column="JOURNAL_TITLE"/>
-    </resultMap>
-
     <!-- 일지 등록 / useGeneratedKeys: 삽입된 레코드의 자동 생성된 키 가져오게 함 / keyProperty: 자동 생성된 키를 매핑할 객체의 속성 -->
-    <insert id="journalEnroll" parameterType="com.syi.project.model.journal.JournalVO" useGeneratedKeys="true" keyProperty="journalNo">
-        
-        <!-- selectKey : 새로운 레코드가 삽입될 때 자동 생성된 키 가져옴 / keyProperty: 자동 생성된 키를 매핑할 속성
-             resultType: 결과 타입 (여기서는 int) / order: 쿼리 실행 순서 (BEFORE는 삽입 전에 실행됨) -->
-        <selectKey keyProperty="journalNo" resultType="int" order="BEFORE">
-            SELECT JOURNAL_SEQ.CURRVAL FROM DUAL
-        </selectKey>
-        
-        INSERT INTO JOURNAL (JOURNAL_TITLE)
-        VALUES (#{journalTitle})
+    <insert id="journalEnroll" parameterType="com.syi.project.model.journal.JournalVO">
+        INSERT INTO JOURNAL (JOURNAL_TITLE, FILE_NAME)
+        VALUES (#{journalTitle}, #{fileName})
     </insert>
 
 </mapper>
