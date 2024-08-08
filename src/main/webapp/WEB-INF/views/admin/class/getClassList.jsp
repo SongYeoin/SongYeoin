@@ -253,9 +253,7 @@ th, td {
                             <td><input type="checkbox"></td>
                             <td>
 							    <a href="<c:url value='/admin/class/main'>
-							                <c:param name='className' value='${classItem.className}'/>
-							                <c:param name='managerName' value='${classItem.managerName}'/>
-							                <c:param name='teacherName' value='${classItem.teacherName}'/>
+							                <c:param name='classNo' value='${classItem.classNo}'/>
 							            </c:url>">
 							        <c:out value="${classItem.className}"/>
 							    </a>

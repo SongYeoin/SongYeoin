@@ -81,8 +81,8 @@ main {
     <main>
         <!-- Main content -->
         <div class="classroom-header">
-            <div class="title">${className}</div>
-            <div class="details">담당자: ${managerName} | 강사명: ${teacherName}</div>
+            <div class="title">${syclass.className}</div>
+            <div class="details">담당자: ${syclass.managerName} | 강사명: ${syclass.teacherName}</div>
         </div>
         <div class="content">
             <!-- 강의실 홈의 다른 내용이 여기에 들어갑니다 -->

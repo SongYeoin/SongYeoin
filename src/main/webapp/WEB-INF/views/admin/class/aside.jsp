@@ -119,7 +119,7 @@
         </div>
         <div class="menu-item">
             <div class="menu-title">
-                <a href="/admin/class/enrollSchedule"><i class="fas fa-cog"></i>시간표 관리</a>
+                <a href="/admin/class/getSchedule"><i class="fas fa-cog"></i>시간표 관리</a>
             </div>
         </div>
     </div>
