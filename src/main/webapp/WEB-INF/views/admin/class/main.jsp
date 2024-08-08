@@ -81,12 +81,12 @@ main {
     <main>
         <!-- Main content -->
         <div class="classroom-header">
-            <div class="title">자바 프로그래밍</div>
-            <div class="details">담당자: 홍길동 | 강사명: 김철수</div>
+            <div class="title">${className}</div>
+            <div class="details">담당자: ${managerName} | 강사명: ${teacherName}</div>
         </div>
         <div class="content">
             <!-- 강의실 홈의 다른 내용이 여기에 들어갑니다 -->
-            <p>환영합니다! 이곳은 자바 프로그래밍 강의실 홈입니다. 다양한 강의 자료와 정보를 확인하실 수 있습니다.</p>
+            <p>환영합니다! 이곳은 ${className} 강의실 홈입니다. 다양한 강의 자료와 정보를 확인하실 수 있습니다.</p>
         </div>
     </main>
 

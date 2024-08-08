@@ -251,7 +251,15 @@ th, td {
                     <c:forEach var="classItem" items="${classList}">
                         <tr>
                             <td><input type="checkbox"></td>
-                            <td><c:out value="${classItem.className}"/></td>
+                            <td>
+							    <a href="<c:url value='/admin/class/main'>
+							                <c:param name='className' value='${classItem.className}'/>
+							                <c:param name='managerName' value='${classItem.managerName}'/>
+							                <c:param name='teacherName' value='${classItem.teacherName}'/>
+							            </c:url>">
+							        <c:out value="${classItem.className}"/>
+							    </a>
+							</td>
                             <td><c:out value="${classItem.managerName}"/></td>
                             <td><fmt:formatDate value="${classItem.startDate}" pattern="yyyy-MM-dd"/></td>
                             <td><fmt:formatDate value="${classItem.endDate}" pattern="yyyy-MM-dd"/></td>

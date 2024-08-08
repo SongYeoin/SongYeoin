@@ -53,6 +53,16 @@ public class SyclassController {
 
 	}
 	
+	/* 반 별 홈 페이지 이동 */
+	@GetMapping("/class/main")
+	public void classMainGET(String className, String managerName, String teacherName, Model model) throws Exception{
+		log.info("반 별 홈 페이지 이동");
+		
+		model.addAttribute("className", className);
+		model.addAttribute("managerName", managerName);
+		model.addAttribute("teacherName", teacherName);
+	}
+	
 	/* 반 등록하기 */
 	@PostMapping("/class/enroll")
 	public String classEnrollPOST(SyclassVO syclass, RedirectAttributes rttr) throws Exception{
