@@ -88,7 +88,7 @@
                 <i class="fas fa-chevron-down arrow"></i>
             </div>
             <div class="submenu">
-                <div class="submenu-item"><a><i class="fas fa-users"></i>수강생 관리</a></div>
+                <div class="submenu-item"><a href="${ pageContext.servletContext.contextPath }/admin/member/list"><i class="fas fa-users"></i>수강생 관리</a></div>
                 <div class="submenu-item"><a><i class="fas fa-user-tie"></i>직원 관리</a></div>
             </div>
         </div>
