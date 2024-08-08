@@ -14,7 +14,12 @@ public interface ClubMapper {
 	
 	//동아리 등록
 	public void enroll(ClubVO club);
+	
+	//동아리 조회
+	public ClubVO getPage(int clubNo);
 
+	//동아리 수정
+	public int modify(ClubVO club);
 	
 	//리스트 페이징 적용
 	public List<ClubVO> getListPaging(Criteria cri);

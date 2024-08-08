@@ -66,6 +66,30 @@
   </insert>
   
   
+  <!-- 조회 -->
+  <select id="getPage" resultMap="clubResultMap">
+  select 
+  a.club_no,
+  a.club_content,
+  a.club_join,
+      a.club_study_date,
+      a.club_reg_date,
+      a.club_check_status,
+      a.club_check_cmt,
+      c.member_name
+from club a
+join enroll b on a.enroll_no = b.enroll_no
+join member c on b.member_no = c.member_no
+where club_No = #{clubNo}
+  </select>
+  
+  <!-- 수정 -->
+  <update id="modify">
+  update club 
+  set club_content = #{content}, club_join = #{join}, club_study_date = #{studyDate}, club_reg_date = sysdate
+  where club_no = #{clubNo}
+  </update>
+  
   <!-- 게시물 목록(페이징) -->
   <select id="getListPaging" resultType="com.syi.project.model.club.ClubVO">
   <![CDATA[

@@ -16,17 +16,26 @@ public class ClubServiceImpl implements ClubService{
 	@Autowired
 	private ClubMapper mapper;
 	
+	//리스트
 	@Override
 	public List<ClubVO> getList() {
 		System.out.println("service: " + mapper.getList());
 		return mapper.getList();
 	}
 
+	//등록
 	@Override
 	public void enroll(ClubVO club) {
 		mapper.enroll(club);
 		
 	}
+
+	//조회
+	@Override
+	public ClubVO getPage(int clubNo) {
+		return mapper.getPage(clubNo);
+	}
+	
 	
 	
 

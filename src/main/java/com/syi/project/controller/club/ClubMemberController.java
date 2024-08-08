@@ -63,6 +63,14 @@ public class ClubMemberController {
 		return "redirect:/club/list";
 	}
 	
+	//조회
+	@GetMapping("/get")
+	public void clubGetPageGET(int clubNo, Model model) {
+		model.addAttribute("pageInfo", cservice.getPage(clubNo));
+	}
+	
+	
+	
 	
 	//리스트 페이징 적용
 	

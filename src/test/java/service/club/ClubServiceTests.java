@@ -22,11 +22,17 @@ public class ClubServiceTests {
 	@Autowired
 	private ClubService service;
 	
-	//조회 테스트
-	@Test
-	public void testGetList() {
-		service.getList().forEach(club -> log.info(""+club));
-	}
+	//리스트 테스트
+//	@Test
+//	public void testGetList() {
+//		service.getList().forEach(club -> log.info(""+club));
+//	}
 	
+	//조회
+	@Test
+	public void testGetPage() {
+		int clubNo = 3;
+		log.info(""+service.getPage(clubNo));
+	}
 	
 }

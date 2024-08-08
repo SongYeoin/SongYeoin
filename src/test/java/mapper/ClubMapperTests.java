@@ -1,5 +1,8 @@
 package mapper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -12,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.syi.project.mapper.club.ClubMapper;
 import com.syi.project.model.Criteria;
+import com.syi.project.model.club.ClubVO;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 public class ClubMapperTests {
@@ -30,12 +34,68 @@ public class ClubMapperTests {
 //		}
 //	}
 
+	//등록
+//	@Test
+//	public void testEnroll() {
+	 // 날짜 문자열
+    //String dateString = "2024-08-09";
+
+    // 문자열을 Date 객체로 변환
+//    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//    Date studyDate = null;
+//    try {
+//        studyDate = dateFormat.parse(dateString);
+//    } catch (ParseException e) {
+//        e.printStackTrace();
+//    }
+    
+//		ClubVO club = new ClubVO();
+//		club.setJoin("person");
+//		club.setStudyDate(studyDate);
+//		club.setContent("test");
+//		mapper.enroll(club);
+//	}
 	
 	//리스트 페이징
+//	@Test
+//	public void testGetListPaging() {
+//		Criteria cri = new Criteria();
+//		List list = mapper.getListPaging(cri);
+//		list.forEach(club -> log.info(""+club));
+//	}
+//	
+	
+	//조회
+//	@Test
+//	public void testGetPage() {
+//		int clubNo = 3;
+//		
+//		log.info(""+mapper.getPage(clubNo));
+//	}
+	
+	//수정
 	@Test
-	public void testGetListPaging() {
-		Criteria cri = new Criteria();
-		List list = mapper.getListPaging(cri);
-		list.forEach(club -> log.info(""+club));
+	public void testModify() {
+		
+		 // 날짜 문자열
+        String dateString = "2024-08-09";
+
+        // 문자열을 Date 객체로 변환
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date studyDate = null;
+        try {
+            studyDate = dateFormat.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        
+		ClubVO club = new ClubVO();
+		club.setClubNo(24);
+		club.setJoin("김영희, 홍길동");
+		//club.setStudyDate(studyDate);
+		club.setContent("test");
+		
+		int result = mapper.modify(club);
+		log.info("result : "+result);
 	}
 }

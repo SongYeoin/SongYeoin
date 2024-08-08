@@ -53,6 +53,14 @@ table {
 	text-align: center;
 }
 
+table thead tr {
+    cursor: default; /* 기본 커서 */
+}
+
+table tbody tr {
+    cursor: pointer; /* 포인터 커서 */
+}
+
 td, th {
 	border: 1px solid black;
 	height: 50px;
@@ -200,9 +208,9 @@ a:hover {
 							<!-- <th class="updatedate_width">수정일</th> -->
 						</tr>
 					</thead>
-
+					<tbody>
 					<c:forEach items="${list }" var="list">
-						<tr>
+						<tr onclick="location.href='/club/get?clubNo=${list.clubNo}'">
 							<td><c:out value="${list.clubNo }" /></td>
 							<%-- <td><a class="move" href='<c:out value="${list.clubNo }" />'><c:out value="${list.title }" /></a></td> --%>
 							<td><c:out value="${list.enroll.member.memberName }" /></td>
@@ -222,6 +230,7 @@ a:hover {
 							<td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.regDate }" /></td>
 						</tr>
 					</c:forEach>
+					</tbody>
 				</table>
 
 				<%-- <h1>"${pageMaker.startPage }" </h1>
