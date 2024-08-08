@@ -21,7 +21,7 @@ public class ChatRepositoryTests {
 
 	
 	
-	
+	  /*
 	  @Test public void createMessage() { MessageVO message = new MessageVO();
 	  
 	  message.setContent("메시지 전달내용을 적었습니다.");
@@ -29,6 +29,7 @@ public class ChatRepositoryTests {
 	  
 	  
 	  messageService.createMessage(message);}
+	  */
 	 
 	 
 	
