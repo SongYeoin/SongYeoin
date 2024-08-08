@@ -35,9 +35,9 @@ main {
     height: 100%;
 }
 
-.box {
-    /* height: 100%; */
-}
+/*.box {
+     height: 100%; 
+}*/
 
 .classroom-header {
     background-color: #f1f1f1;

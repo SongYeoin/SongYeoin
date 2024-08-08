@@ -29,18 +29,26 @@ body {
     flex-direction: column;
 }
 
-main {
+/* main {
     flex: 1;
     margin-left: 250px;
     padding-top: 90px;
     overflow-y: auto;
     top: 120px;
     left: 250px;
-}
+} */
 
-.box {
+main {
+    flex: 1;
+    margin-left: 300px;
+    margin-top: 160px;
+    overflow-y: auto;
     height: 100%;
 }
+
+/* .box {
+    height: 100%;
+} */
 
 .form-container {
     padding: 20px;
@@ -99,13 +107,13 @@ main {
     background-color: #c82333;
 }
 
-main {
+/* main {
     flex: 1;
     margin-left: 250px;
     padding: 20px;
     padding-top: 90px;
     overflow-y: auto;
-}
+} */
 
 .container {
     margin: 20px auto;
@@ -114,6 +122,11 @@ main {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 1200px;
     border-radius: 10px;
+    padding-bottom: 20px;
+    
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+   
 }
 
 .header {
@@ -128,8 +141,8 @@ main {
     /* padding: 20px; */
     
     padding-top: 40px;
-    padding-right: 40px;
-    padding-left: 40px;
+    padding-right: 32px;
+    padding-left: 32px;
     padding-bottom: 20px;
     border-radius: 10px 10px 0 0;
 }
@@ -155,16 +168,14 @@ main {
     margin-left: 10px; /* 아이콘 사이에 간격을 줍니다 */
 }
 
-.tdiv{
-
+.div-table{
+	margin-left: 12px;
+    margin-right: 12px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    
-    /* margin-left: 20px;
-    margin-right: 20px; */
 }
 
 thead {
@@ -190,11 +201,9 @@ th, td {
 .footer {
     display: flex;
     justify-content: space-between;
+    margin-left: 12px;
+    margin-right: 12px;
     margin-top: 20px;
-    
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
 }
 
 /* 드롭다운 메뉴 스타일 */
@@ -252,7 +261,7 @@ th, td {
                     <i class="fas fa-filter"></i>
                 </div>
             </div>
-            <div class="tdiv">
+            <div class="div-table">
             <table>
                 <thead>
                     <tr>
