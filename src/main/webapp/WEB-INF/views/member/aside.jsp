@@ -117,6 +117,13 @@
         document.querySelectorAll('.menu-title').forEach(item => {
             item.addEventListener('click', event => {
                 const menuItem = item.parentElement;
+                
+                document.querySelectorAll('.menu-item').forEach(i => {
+                    if (i !== menuItem) {
+                        i.classList.remove('active');
+                    }
+                }); 
+                
                 menuItem.classList.toggle('active');
             });
         });

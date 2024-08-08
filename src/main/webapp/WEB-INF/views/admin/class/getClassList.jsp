@@ -109,7 +109,7 @@ main {
 
 .container {
     margin: 20px auto;
-    padding: 20px;
+    /* padding: 20px; */
     background-color: #f9fafc;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 1200px;
@@ -125,7 +125,13 @@ main {
     padding-bottom: 10px;
     border-bottom: 1px solid #ddd;
     background-color: #e2eff9;
-    padding: 20px;
+    /* padding: 20px; */
+    
+    padding-top: 40px;
+    padding-right: 40px;
+    padding-left: 40px;
+    padding-bottom: 20px;
+    border-radius: 10px 10px 0 0;
 }
 
 .header h1 {
@@ -149,9 +155,16 @@ main {
     margin-left: 10px; /* 아이콘 사이에 간격을 줍니다 */
 }
 
+.tdiv{
+
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
+    
+    /* margin-left: 20px;
+    margin-right: 20px; */
 }
 
 thead {
@@ -178,6 +191,10 @@ th, td {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+    
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 /* 드롭다운 메뉴 스타일 */
@@ -235,6 +252,7 @@ th, td {
                     <i class="fas fa-filter"></i>
                 </div>
             </div>
+            <div class="tdiv">
             <table>
                 <thead>
                     <tr>
@@ -251,7 +269,15 @@ th, td {
                     <c:forEach var="classItem" items="${classList}">
                         <tr>
                             <td><input type="checkbox"></td>
-                            <td><c:out value="${classItem.className}"/></td>
+                                 <td>
+							    <a href="<c:url value='/admin/class/main'>
+							                <c:param name='className' value='${classItem.className}'/>
+							                <c:param name='managerName' value='${classItem.managerName}'/>
+							                <c:param name='teacherName' value='${classItem.teacherName}'/>
+							            </c:url>">
+							        <c:out value="${classItem.className}"/>
+							    </a>
+							</td>
                             <td><c:out value="${classItem.managerName}"/></td>
                             <td><fmt:formatDate value="${classItem.startDate}" pattern="yyyy-MM-dd"/></td>
                             <td><fmt:formatDate value="${classItem.endDate}" pattern="yyyy-MM-dd"/></td>
@@ -271,6 +297,7 @@ th, td {
                     </c:forEach>
                 </tbody>
             </table>
+            </div>
             <div class="footer">
                 <span>Item per pages: 10</span>
                 <span>1-10 of 30</span>
