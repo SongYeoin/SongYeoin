@@ -25,6 +25,12 @@ public class ScheduleController {
 		log.info("시간표 등록 페이지 이동");
 	}
 	
+	/* 시간표 조회 페이지 이동 */
+	@GetMapping("/class/getSchedule")
+	public void getScheduleGET() throws Exception{
+		log.info("시간표 조회 페이지 이동");
+	}
+	
 	/* 시간표 등록 */
 	@PostMapping("/class/enrollSchedule")
 	public void enrollSchedulePOST(ScheduleVO schedule) throws Exception{

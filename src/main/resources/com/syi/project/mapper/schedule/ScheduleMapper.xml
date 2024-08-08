@@ -17,6 +17,11 @@
     insert into SCHEDULE (CLASS_NO)
     values (#{classNo})
     </insert>
+    
+    <!-- 시간표 조회 -->
+    <select id="getSchedule" resultMap="scheduleResultMap">
+    SELECT * FROM SCHEDULE WHERE class_no=#{classNo}
+    </select>
    
 
 </mapper>
