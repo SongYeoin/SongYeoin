@@ -12,15 +12,16 @@ public interface JournalMapper {
 
 	// 일지 등록
 	public void journalEnroll(JournalVO journal);
-
+	
+    
 	// 일지 목록 List<>
-	public List<JournalVO> journalGetList(Criteria cri);
+	public List<JournalVO> journalList(Criteria cri);
 
 	// 일지 총 수
 	public int journalGetTotal(Criteria cri);
 
 	// 일지 상세
-	public JournalVO journalGetDetail(int journalNo);
+	public JournalVO journalDetail(int journalNo);
 
 	// 일지 수정
 	public int journalModify(JournalVO journal);

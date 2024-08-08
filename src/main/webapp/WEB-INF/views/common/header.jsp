@@ -46,7 +46,7 @@ header {
 	gap: 10px;
 }
 
-.chat-move:hover {
+.fs-3 {
 	cursor: pointer;
 }
 </style>
@@ -69,7 +69,7 @@ header {
         <div class="btns">
 		<i class="bi bi-chat fs-3 chat-move" onclick="location.href='${pageContext.servletContext.contextPath}chatroom/main'"></i>
         	<i class="bi bi-person fs-3"></i> <!-- 마이페이지 아이콘 -->
-        	<i class="bi bi-box-arrow-right fs-3"></i> <!-- 로그아웃 아이콘 -->
+        	<i class="bi bi-box-arrow-right fs-3" onclick="location.href='${pageContext.servletContext.contextPath}/member/logout'"></i> <!-- 로그아웃 아이콘 -->
         </div>
     </header>
 

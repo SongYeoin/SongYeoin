@@ -2,10 +2,14 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- MyBatis 매퍼 XML 파일의 시작 -->
 <mapper namespace="com.syi.project.mapper.journal.JournalMapper">
 
-
-
-
+    <!-- 일지 등록 / useGeneratedKeys: 삽입된 레코드의 자동 생성된 키 가져오게 함 / keyProperty: 자동 생성된 키를 매핑할 객체의 속성 -->
+    <insert id="journalEnroll" parameterType="com.syi.project.model.journal.JournalVO">
+        INSERT INTO JOURNAL (JOURNAL_TITLE, FILE_NAME)
+        VALUES (#{journalTitle}, #{fileName})
+    </insert>
 
 </mapper>

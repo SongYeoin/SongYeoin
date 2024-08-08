@@ -1,8 +1,10 @@
 package com.syi.project.model.journal;
 
 import java.util.Date;
-import java.util.List;
 
+import lombok.Data;
+
+@Data
 public class JournalVO {
 
 	private int journalNo; // 일지 번호
@@ -13,13 +15,6 @@ public class JournalVO {
 	
 	private String journalTitle; // 일지 제목
 	
-	private int classNo; // 반 번호
-
-	private int memberNo; // 학생 번호
-
-	private int fileNo; // 파일 번호
+	private String fileName; // 파일 이름
 	
-	private List<JournalFileVO> journalFileList; // 첨부파일 정보
-
-
 }
