@@ -59,11 +59,18 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.selectClassList();
 	}
 
+	// 수강이력 조회
+	@Override
+	public List<EnrollVO> selectEnrollList(int memberNo) {
+		return adminMapper.selectEnrollList(memberNo);
+	}
+	
 	// 수강 신청
 	@Override
 	public int insertEnroll(EnrollVO enroll) {
 		return adminMapper.insertEnroll(enroll);
 	}
+
 
 	
 }

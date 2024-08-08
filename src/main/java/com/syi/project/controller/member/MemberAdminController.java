@@ -125,31 +125,35 @@ public class MemberAdminController {
 	@GetMapping("/member/detail")
 	public String memberDetail(int memberNo, Model model) throws Exception {
 		logger.info("회원 상세 페이지");
-		
 		MemberVO member = adminService.selectMemberDetail(memberNo);
 		List<SyclassVO> classList = adminService.selectClassList();
+		List<EnrollVO> enrollList = adminService.selectEnrollList(memberNo);
+		
 		model.addAttribute("member", member);
 		model.addAttribute("classList", classList);
+		model.addAttribute("enrollList", enrollList);
 		return "admin/member/detail";
 	}
 	
 	
 	// 수강 신청
 	@PostMapping("/member/enroll")
+	@ResponseBody
 	public String memberEnroll(int memberNo, int classNo, RedirectAttributes rttr) {
+		System.out.println("memberNo 는 " + memberNo);
+		System.out.println("classNo 는 " + classNo);
+		
 		EnrollVO enroll = new EnrollVO();
 		enroll.setMemberNo(memberNo);
 		enroll.setClassNo(classNo);
 		
 		int result = adminService.insertEnroll(enroll);
+		System.out.println("result는 " + result);
 		if(result != 0) {
-			rttr.addFlashAttribute("enroll_result", "success");
+			return "success";
 		} else {
-			rttr.addFlashAttribute("enroll_result", "fail");
+			return "fail";
 		}
-
-		/* return "redirect:/admin/member/detail"; */
-		return "redirect:/admin/member/detail?memberNo=" + memberNo;
 	}
 	
 

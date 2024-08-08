@@ -54,27 +54,71 @@ main {
 	<!-- 사이드바 연결 -->	
 	<%@ include file="../aside.jsp"%>
 
+
    <main>
         <!-- Main content -->
         <div class="box">
-			<select name="classNo" id="classNo">
-				<option selected>프로그램</option>
-				<c:forEach var="syclass" items="${classList}">
-					<option value="${syclass.classNo}">${syclass.className}</option>
-				</c:forEach>
-			</select>
-
-
-
-		</div>
-	</main>
-
-	<!-- 푸터 연결 -->
-	<%@ include file="../../common/footer.jsp"%>
-
+             <div class="memberDetail-wrapper">
+                <h2>회원 정보 상세조회</h2>
+                <p><strong>이름:</strong> ${member.memberName}</p>
+                <p><strong>생년월일:</strong> ${member.memberBirthday}</p>
+                <p><strong>성별:</strong> ${member.memberGender}</p>
+                <p><strong>전화번호:</strong> ${member.memberPhone}</p>
+                <p><strong>이메일:</strong> ${member.memberEmail}</p>
+                <p><strong>주소:</strong> (${member.memberAddress}) ${member.memberStreetAddress} ${member.memberDetailAddress}</p>
+                <p><strong>프로그램:</strong>
+                <c:forEach var="enroll" items="${ enrollList }" >
+                	${ enroll.syclass.className }
+                </c:forEach>
+                </p>
+                
+                <h2>프로그램 등록</h2>
+                <label for="classNo">프로그램 선택:</label>
+                <select id="classNo">
+                    <option value="" disabled selected>선택하세요</option>
+                    <c:forEach var="syclass" items="${classList}">
+                        <option value="${syclass.classNo}">${syclass.className}</option>
+                    </c:forEach>
+                </select>
+                <button id="submitButton">등록하기</button>
+            </div>
+        </div>
+    </main>
+    <!-- 푸터 연결 -->
+    <%@ include file="../../common/footer.jsp"%>
 </body>
 
 <script>
+$(document).ready(function() {
+    $('#submitButton').on('click', function() {
+        var memberNo = '${member.memberNo}'; 
+        var classNo = $('#classNo').val();
 
+        if (!classNo) {
+            alert("프로그램을 선택해주세요.");
+            return;
+        }
+
+        $.ajax({
+            url: '${pageContext.servletContext.contextPath}/admin/member/enroll',
+            type: 'POST',
+            data: {
+                memberNo: memberNo,
+                classNo: classNo
+            },
+            success: function(response) {
+                if (response === 'success') {
+                    alert("수강신청이 완료되었습니다.");
+                    location.reload();
+                } else {
+                    alert("수강신청에 실패하였습니다.");
+                }
+            },
+            error: function(xhr, status, error) {
+                alert("서버와의 통신에 문제가 발생했습니다.");
+            }
+        });
+    });
+});
 </script>
 </html>

@@ -30,6 +30,9 @@ public interface AdminMapper {
 	// 반 조회
 	List<SyclassVO> selectClassList();
 	
+	// 수강이력 조회
+	List<EnrollVO> selectEnrollList(int memberNo);
+	
 	// 수강 신청
 	int insertEnroll(EnrollVO enroll);
 }
