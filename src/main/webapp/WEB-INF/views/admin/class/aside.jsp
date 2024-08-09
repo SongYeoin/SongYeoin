@@ -14,7 +14,7 @@
 	color: white;
 	height: 960px;
 	position: fixed;
-	top: 70px;
+	top: 130px;
 	overflow-y: auto;
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
