@@ -42,5 +42,17 @@
 	<select id="journalDetail" resultMap="journalResultMap">
 		select * from journal where journal_no = #{journalNo}
 	</select>
+	
+	<!-- 일지 수정 -->
+	<update id="journalModify" parameterType="com.syi.project.model.journal.JournalVO">
+	    UPDATE JOURNAL
+	    SET
+	        JOURNAL_TITLE = #{journalTitle},
+	        JOURNAL_WRITEDATE = #{journalWriteDate},
+	        FILE_NAME = #{fileName}
+	    WHERE
+	        JOURNAL_NO = #{journalNo}
+	</update>
+	
 
 </mapper>

@@ -26,29 +26,38 @@ public class JournalServiceImpl implements JournalService {
 	// 일지 등록
 	@Override
 	public void journalEnroll(JournalVO journal, MultipartFile file) throws Exception {
-		logger.info(">>>>>>>>>>>>>>>>>               journalEnroll  >>");
+		logger.info(">>>>>>>>>>>>>>>>>  journalEnroll  >>");
 		journalMapper.journalEnroll(journal);
 	}
 
 	// 일지 목록 조회
 	@Override
 	public List<JournalVO> journalList() throws Exception {
-		logger.info(">>>>>>>>>>>>>>>>>               journalList  >>");
+		logger.info(">>>>>>>>>>>>>>>>>  journalList  >>");
 		return journalMapper.journalList();
 	}
 
 	// 일지 갯수
 	@Override
 	public int journalGetTotal(Criteria cri) throws Exception {
-		logger.info(">>>>>>>>>>>>>>>>>               journalGetTotal  >>");
+		logger.info(">>>>>>>>>>>>>>>>>  journalGetTotal  >>");
 		return journalMapper.journalGetTotal(cri);
 	}
 
 	// 일지 상세 조회
 	@Override
 	public JournalVO journalDetail(int journalNo) {
-		logger.info(">>>>>>>>>>>>>>>>>               journalDetail  >>" + journalNo);
+		logger.info(">>>>>>>>>>>>>>>>>  journalDetail  >>" + journalNo);
 		return journalMapper.journalDetail(journalNo);
 	}
+
+	// 일지 수정
+	@Override
+	public void journalModify(JournalVO journal) throws Exception {
+	    logger.info(">>>>>>>>>>>>>>>>>  journalModify  >>");
+	    // 일지 정보를 수정하는 메서드 호출
+	    journalMapper.journalModify(journal);
+	}
+
 
 }

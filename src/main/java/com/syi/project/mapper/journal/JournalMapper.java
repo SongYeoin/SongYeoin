@@ -14,19 +14,19 @@ public interface JournalMapper {
 	public void journalEnroll(JournalVO journal);
     
 	// 일지 목록 List<>
-	List<JournalVO> journalList();
+	public List<JournalVO> journalList();
 
 	// 일지 총 갯수
-	int journalGetTotal(Criteria cri);
+	public int journalGetTotal(Criteria cri);
 
 	// 일지 상세
 	public JournalVO journalDetail(int journalNo);
 
 	// 일지 수정
-	int journalModify(JournalVO journal);
+	public void journalModify(JournalVO journal);
 
 	// 일지 삭제
-	int journalDelete(int journalNo);
+	public int journalDelete(int journalNo);
 
 	
 }

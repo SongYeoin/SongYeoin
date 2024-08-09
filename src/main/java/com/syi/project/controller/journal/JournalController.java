@@ -166,17 +166,52 @@ public class JournalController {
 	
 	
 
-	/**
-	 * 교육일지 수정 페이지를 요청하는 GET 요청을 처리합니다.
-	 * 
-	 * @return JSP 뷰 이름
-	 * @throws Exception 페이지 처리 중 발생할 수 있는 예외
-	 */
-	@RequestMapping(value = "journalModify", method = RequestMethod.GET)
-	public String journalModifylGET() throws Exception {
-		logger.info("교육일지 수정 페이지 접속");
-		return "journal/journalModify"; // JSP 뷰 이름 반환
+	/* 교육일지 수정 페이지 요청 처리*/
+	@GetMapping("journalModify")
+	public String journalModifylGET(@RequestParam("journalNo") int journalNo, Model model) throws Exception {
+		 logger.info("교육일지 수정 페이지 접속 / 일지 글번호 ---> " + journalNo);
+	        
+	     JournalVO journal = journalService.journalDetail(journalNo);
+	     model.addAttribute("journal", journal);
+	        
+	     return "journal/journalModify";
 	}
+	
+	/* 교육일지 수정 처리 */
+    @PostMapping("journalModify.do")
+    public String journalModifyPOST(JournalVO journal, @RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
+        logger.info("교육일지 수정 요청 / 일지 글번호 ---> " + journal.getJournalNo());
+
+        // 파일이 업로드된 경우
+        if (file != null && !file.isEmpty()) {
+            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+            Path uploadPath = Paths.get(fileUploadPath);
+
+            logger.info(">>> File upload path: {}", uploadPath);
+
+            if (!Files.exists(uploadPath)) {
+                logger.info(">>> Creating directory: {}", uploadPath);
+                Files.createDirectories(uploadPath);
+            }
+
+            Path filePath = uploadPath.resolve(fileName);
+            logger.info(">>> File path: {}", filePath);
+
+            try {
+                Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+                journal.setFileName(fileName);
+                logger.info(">>> File uploaded successfully: {}", fileName);
+            } catch (IOException e) {
+                logger.error(">>> File upload failed: {}", fileName, e);
+                throw new Exception("파일 업로드 실패: " + fileName, e);
+            }
+        }
+
+        // 일지 수정 처리
+        journalService.journalModify(journal);
+
+        return "redirect:/journal/journalList";
+    }
 
 	/**
 	 * 교육일정 관리 페이지를 요청하는 POST 요청을 처리합니다.
