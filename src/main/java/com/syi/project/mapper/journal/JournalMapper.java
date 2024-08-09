@@ -27,6 +27,6 @@ public interface JournalMapper {
 
 	// 일지 삭제
 	public int journalDelete(int journalNo);
-
+	
 	
 }

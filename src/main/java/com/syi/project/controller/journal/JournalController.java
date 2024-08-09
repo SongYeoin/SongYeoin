@@ -212,6 +212,35 @@ public class JournalController {
 
         return "redirect:/journal/journalList";
     }
+    
+    
+    /* 교육일지 삭제 처리 */
+    @PostMapping("journalDelete")
+    public String journalDelete(@RequestParam("journalNo") int journalNo) throws Exception {
+        logger.info("교육일지 삭제 요청 / 일지 글번호 ---> " + journalNo);
+
+        // 일지 상세 정보를 조회하여 파일 이름을 가져옴
+        JournalVO journal = journalService.journalDetail(journalNo);
+        if (journal != null && journal.getFileName() != null) {
+            // 파일 삭제 처리
+            String fileName = journal.getFileName();
+            Path filePath = Paths.get(fileUploadPath).resolve(fileName);
+
+            try {
+                Files.deleteIfExists(filePath);
+                logger.info(">>> File deleted successfully: {}", fileName);
+            } catch (IOException e) {
+                logger.error(">>> File deletion failed: {}", fileName, e);
+            }
+        }
+
+        // 일지 삭제 처리
+        journalService.journalDelete(journalNo);
+
+        return "redirect:/journal/journalList";
+    }
+
+    
 
 	/**
 	 * 교육일정 관리 페이지를 요청하는 POST 요청을 처리합니다.

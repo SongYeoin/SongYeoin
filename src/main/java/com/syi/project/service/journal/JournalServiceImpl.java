@@ -59,5 +59,12 @@ public class JournalServiceImpl implements JournalService {
 	    journalMapper.journalModify(journal);
 	}
 
+	// 일지 삭제
+	@Override
+	public int journalDelete(int journalNo) throws Exception {
+		logger.info(">>>>>>>>>>>>>>>>>  journalDelete  >>");
+		return journalMapper.journalDelete(journalNo);
+	}
+
 
 }

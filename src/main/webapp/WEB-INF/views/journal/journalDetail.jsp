@@ -1,3 +1,4 @@
+<!-- 교육일지 상세보기 페이지 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -141,8 +142,8 @@ footer {
                 <p class="attachment">
                     <strong>첨부파일:</strong> 
                     <a href="${pageContext.request.contextPath}/journal/downloadFile?fileName=${journalDetail.fileName}" download>
-					    <c:out value="${journalDetail.fileName}" />
-					</a>
+                        <c:out value="${journalDetail.fileName}" />
+                    </a>
                 </p>
             </c:if>
         </div>

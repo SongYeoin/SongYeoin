@@ -24,5 +24,8 @@ public interface JournalService {
 	/* 일지 수정 */
 	public void journalModify(JournalVO journal) throws Exception;
 	
+	/* 일지 수정 */
+	public int journalDelete(int journalNo) throws Exception;
+	
 
 }

@@ -54,5 +54,10 @@
 	        JOURNAL_NO = #{journalNo}
 	</update>
 	
+	<!-- 일지 삭제 -->
+	<delete id="journalDelete">
+		delete from journal where journal_no = #{journalNo}
+	</delete>
+	
 
 </mapper>
