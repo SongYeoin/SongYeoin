@@ -33,7 +33,7 @@
 				<label>교육일지 작성일자</label>
 			</div>
 			<div class="form_section_content">
-				<input type="date" id="writeDate" name="writeDate" /> 
+				<input type="date" id="writeDate" name="journalWriteDate" /> 
 				<span id="warn_date" style="display:none; color:red;">날짜를 선택해주세요.</span>
 			</div>
 		</div>
@@ -62,7 +62,7 @@
 
 			/* 입력값 변수 */
 			let journalTitle = $('input[name=journalTitle]').val(); // 일지 제목
-			let writeDate = $('input[name=writeDate]').val(); // 일지 작성일자
+			let writeDate = $('input[name=journalWriteDate]').val(); // 일지 작성일자
 			let file = $('input[name=file]')[0].files; // 일지 첨부파일
 
 			/* 공란 경고 span 태그 */
