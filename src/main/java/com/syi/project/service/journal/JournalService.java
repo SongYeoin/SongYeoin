@@ -13,9 +13,13 @@ public interface JournalService {
     public void journalEnroll(JournalVO journal, MultipartFile file) throws Exception;
     
     /* 일지 목록 */
-    List<JournalVO> journalList() throws Exception;
+    public List<JournalVO> journalList() throws Exception;
     
     /* 일지 총 갯수 */
-    int journalGetTotal(Criteria cri) throws Exception;
+    public int journalGetTotal(Criteria cri) throws Exception;
+    
+    /* 일지 상세 조회 */
+	public JournalVO journalDetail(int journalNo);
+
 
 }

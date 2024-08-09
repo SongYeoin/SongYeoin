@@ -201,22 +201,26 @@ table tbody tr:hover {
 			
 			<div class="table_wrap">
 				<table>
-					<thead>
-						<tr>
-							<th class="bno_width">번호</th>
-							<th class="title_width">제목</th>
-							<th class="regdate_width">작성일자</th>
-						</tr>
-					</thead>
-					<tbody>
-					<c:forEach items="${journalList}" var="journal">
-						<tr>
-							<td><c:out value="${journal.journalNo}" /></td>
-							<td><c:out value="${journal.journalTitle}" /></td>
-							<td><fmt:formatDate pattern="yyyy/MM/dd" value="${journal.journalWriteDate}" /></td>
-						</tr>
-					</c:forEach>
-					</tbody>
+				    <thead>
+				        <tr>
+				            <th class="bno_width">번호</th>
+				            <th class="title_width">제목</th>
+				            <th class="regdate_width">작성일자</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				    <c:forEach items="${journalList}" var="journal">
+				        <tr>
+				            <td><c:out value="${journal.journalNo}" /></td>
+				            <td>
+				                <a href="${pageContext.request.contextPath}/journal/journalDetail?journalNo=${journal.journalNo}">
+				                    <c:out value="${journal.journalTitle}" />
+				                </a>
+				            </td>
+				            <td><fmt:formatDate pattern="yyyy/MM/dd" value="${journal.journalWriteDate}" /></td>
+				        </tr>
+				    </c:forEach>
+				    </tbody>
 				</table>
 
 				<div class="pageInfo_wrap">

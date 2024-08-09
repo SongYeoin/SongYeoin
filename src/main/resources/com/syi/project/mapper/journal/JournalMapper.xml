@@ -29,8 +29,6 @@
 	    order by journal_no desc
 	</select>
 
-
-
 	<!-- 일지 총 갯수 조회 쿼리 -->
 	<select id="journalGetTotal" resultType="int">
 		select count(*) from journal
@@ -38,6 +36,11 @@
 		<if test="keyword != null">
 			where journal_title like '%' || #{keyword} || '%'
 		</if>
+	</select>
+	
+	<!-- 일지 상세 조회 -->
+	<select id="journalDetail" resultMap="journalResultMap">
+		select * from journal where journal_no = #{journalNo}
 	</select>
 
 </mapper>
